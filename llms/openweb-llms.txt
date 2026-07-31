@@ -1,0 +1,138 @@
+# OpenWeb Documentation
+
+> OpenWebOS brings power back to publishers. It’s your unified, end-to-end suite for building a community, harnessing first-party data, achieving sustainable revenue, and future-proofing your businesses. It’s your OS to win on the web.
+
+## Guides
+- [Getting Started](https://developers.openweb.com/docs/getting-started.md): Learn about and implement the library at the core of each OpenWeb product
+- [Wordpress](https://developers.openweb.com/docs/wordpress.md): Learn how to add OpenWeb products to your WordPress posts.
+- [Conversation](https://developers.openweb.com/docs/conversation.md): Add a Conversation to your pages
+- [Author Badges](https://developers.openweb.com/docs/author-badges.md): Give your user a visual indicator of the article author in Conversation comment
+- [Import Comments](https://developers.openweb.com/docs/import-third-party-comments.md): Make a one-time import of existing comments from a third-party platform
+- [Import Restricted Words](https://developers.openweb.com/docs/import-restricted-words.md): Make a one-time import of restricted words
+- [Scroll to a Conversation](https://developers.openweb.com/docs/enable-scrolling-to-a-conversation.md): Help your users quickly find the comments of an article
+- [Social Reviews](https://developers.openweb.com/docs/social-reviews.md): Create a fluent conversation experience with a star rating aspect that fuels quality interactions.
+- [Community Spotlight](https://developers.openweb.com/docs/community-spotlight.md): Draw users to act on key initiatives such as registrations, digital subscriptions or conversation call-to-action.
+- [Live Blog](https://developers.openweb.com/docs/live-blog.md)
+- [Notification Bell](https://developers.openweb.com/docs/notification-bell.md): Allow users to easily view new activity and re-visit conversations they took part in, anywhere across the site.
+- [Popular in the Community](https://developers.openweb.com/docs/popular-in-the-community.md)
+- [Reactions](https://developers.openweb.com/docs/reactions.md): Empower your readers to express how they feel.
+- [Standalone Ad](https://developers.openweb.com/docs/standalone-ad.md): Learn how to create additional content monetization opportunities.
+- [Topic Tracker](https://developers.openweb.com/docs/topic-tracker.md): Enable users to follow their favorite topics and authors and receive timely notifications when relevant content is published.
+- [Identity](https://developers.openweb.com/docs/identity.md): Create registration and login flows your users know and trust.
+- [Open a user profile](https://developers.openweb.com/docs/open-a-user-profile.md): Enable users to view their activity history and edit their profiles as part of a custom call-to-action.
+- [Single Sign On](https://developers.openweb.com/docs/single-sign-on.md): OpenWeb’s single sign-on (SSO) process allows using your existing identity management solutions with OW products.
+- [Third-party single sign on](https://developers.openweb.com/docs/implement-third-party-single-sign-on.md): Use a third-party identity management provider to authenticate your users.
+- [Comment Counter](https://developers.openweb.com/docs/comment-counter.md): Help users identify Conversations with high engagement.
+- [Event Listener Reference](https://developers.openweb.com/docs/event-listener-reference.md): OpenWeb has client-side event listeners for multiple widgets to aid in tracking engagement or for other functionality.
+- [Export Comments](https://developers.openweb.com/docs/export-comments.md): Learn about the Export API versions
+- [Export Comments v4 ᴺᴱᵂ](https://developers.openweb.com/docs/export-comments-v4.md): Request an export of comments, users, and ranks by Conversation ID or date range.
+- [Top Comments ᴺᴱᵂ](https://developers.openweb.com/docs/top-comments-guide.md): Retrieve top comments
+- [Trending Articles ᴺᴱᵂ](https://developers.openweb.com/docs/trending-articles-guide.md): Retrieve trending articles
+- [Export and Delete User Data](https://developers.openweb.com/docs/export-and-delete-user-data.md)
+- [Moderation Policy](https://developers.openweb.com/docs/moderation-policy.md): View and change your moderation policy for an article
+- [Notification Webhook](https://developers.openweb.com/docs/notification-webhook.md): Have notification event information sent to a webhook endpoint
+- [SEO Service](https://developers.openweb.com/docs/seo-service.md): Enrich the information search engines like Google use to index your pages with content from Conversation, Social Reviews and Live Blog
+- [User Activity](https://developers.openweb.com/docs/api-user-activity.md): Access the latest user activity within a Conversation
+- [User Muting](https://developers.openweb.com/docs/api-user-muting.md): Allow registered users to mute other registered users
+- [Social Reviews (Star Ratings)](https://developers.openweb.com/docs/social-reviews-star-ratings-read-api.md)
+- [Getting Started](https://developers.openweb.com/docs/android-social-sdk-getting-started.md): Learn how to add the OpenWeb SDK to your Android app.
+- [SDK Structure](https://developers.openweb.com/docs/sdk-structure.md): Understand the organization of the OpenWeb Android SDK.
+- [Conversation](https://developers.openweb.com/docs/android-social-sdk-conversation.md): Choose an approach to implement Conversation in your Android app.
+- [Articles](https://developers.openweb.com/docs/android-social-sdk-articles.md)
+- [Customization](https://developers.openweb.com/docs/customization.md)
+- [Authentication](https://developers.openweb.com/docs/authentication.md)
+- [Analytics](https://developers.openweb.com/docs/analytics.md)
+- [Helpers](https://developers.openweb.com/docs/helpers.md)
+- [Notifications ᴺᴱᵂ](https://developers.openweb.com/docs/mobile-sdk-notifications-feature.md)
+- [Social Reviews ᴺᴱᵂ](https://developers.openweb.com/docs/android-social-reviews.md): Create a fluent conversation experience with a star rating aspect that fuels quality interactions.
+- [Flows and Views](https://developers.openweb.com/docs/flows-and-views.md): The OWUIFlows and OWUIViews interfaces provide two approaches to integrating the Conversation module and other UI elements into your app: Flows and Views.
+- [Migration Guides](https://developers.openweb.com/docs/android-migration-guides.md)
+- [Migration Guide: 1.x → 2.x](https://developers.openweb.com/docs/android-migration-guide.md)
+- [Getting Started](https://developers.openweb.com/docs/ios-getting-started.md): Learn how to add the OpenWeb SDK to your iOS app.
+- [SDK Structure](https://developers.openweb.com/docs/ios-sdk-structure.md): Understand the organization of the OpenWeb iOS SDK
+- [Conversation](https://developers.openweb.com/docs/ios-conversation.md): Choose an approach to implement Conversation in your iOS app.
+- [Articles](https://developers.openweb.com/docs/ios-articles.md)
+- [Components](https://developers.openweb.com/docs/ios-components.md): Add Conversation experiences to your iOS app using the OWUIComponents protocol
+- [Flows and Views](https://developers.openweb.com/docs/ios-flows-and-views.md): (Deprecated) Learn about the OWUIFlows and OWUIViews protocols that provide two approaches to add the Conversation module and general UI to your iOS app.
+- [SwiftUI](https://developers.openweb.com/docs/ios-swiftui.md): Use native SwiftUI Views to add Conversation to your app.
+- [Customizations](https://developers.openweb.com/docs/ios-customizations.md): Configure the OpenWeb iOS SDK's appearance and behavior through the OWCustomizations protocol to align with your brand identity. Customize colors, fonts, navigation, and UI elements.
+- [Custom Fonts](https://developers.openweb.com/docs/ios-custom-fonts.md): Using custom fonts in the iOS SDK
+- [Authentication](https://developers.openweb.com/docs/ios-authentication.md): OpenWeb's single sign on (SSO) enables your registered users to participate in members-only conversations without an extra registration. Learn how to implement iOS authentication.
+- [Helpers](https://developers.openweb.com/docs/ios-helpers.md)
+- [Analytics](https://developers.openweb.com/docs/ios-analytics.md)
+- [Notifications Feed](https://developers.openweb.com/docs/notifications.md)
+- [Social Reviews](https://developers.openweb.com/docs/ios-social-reviews.md): Create a fluent conversation experience with a star rating aspect that fuels quality interactions.
+- [GIPHY Integration for iOS](https://developers.openweb.com/docs/giphy-integration-for-ios.md)
+- [Push Notifications](https://developers.openweb.com/docs/push-notifications.md)
+- [Migration Guide: 2.x → 3.x](https://developers.openweb.com/docs/ios-migration-2x-3x.md): Migrate from deprecated Flows & Views APIs to the new Components API, and from OWTheme to the new elements customization system
+- [Getting Started](https://developers.openweb.com/docs/ios-standalone-ad-getting-started.md): Learn how to create additional content monetization opportunities in your iOS app.
+- [SDK Structure](https://developers.openweb.com/docs/ios-standalone-ad-sdk-structure.md): Understand the organization of the OpenWeb iOS SDK.
+- [AD UI](https://developers.openweb.com/docs/ios-standalone-ad-ad-ui.md)
+- [Analytics](https://developers.openweb.com/docs/ios-standalone-ad-analytics.md)
+- [Helpers](https://developers.openweb.com/docs/ios-standalone-ad-helpers.md)
+- [Getting started](https://developers.openweb.com/docs/rn-getting-started.md): Add the OpenWeb SDK to your React Native app
+- [SDK Structure](https://developers.openweb.com/docs/sdk-structure-1.md)
+- [Conversation](https://developers.openweb.com/docs/rn-conversation.md): Choose an approach to implement Conversation in your React Native app.
+- [Article](https://developers.openweb.com/docs/rn-article.md)
+- [UI Components](https://developers.openweb.com/docs/rn-ui-components.md)
+- [Authentication](https://developers.openweb.com/docs/rn-authentication.md): Learn how to implement React Native authentication.
+- [Customizations](https://developers.openweb.com/docs/customizations.md): Configure the OpenWeb React Native SDK's appearance and behavior through the customizations API to align with your brand identity. Customize themes, comment actions, and color schemes.
+- [Custom Fonts](https://developers.openweb.com/docs/custom-fonts.md): Using custom fonts in the React Native SDK
+- [GIPHY Integration](https://developers.openweb.com/docs/giphy-integration.md): Enable users to select and share GIFs using the Giphy SDK.
+- [Analytics](https://developers.openweb.com/docs/rn-analytics.md)
+- [Helpers](https://developers.openweb.com/docs/helpers-1.md)
+
+## API Reference
+- [Request an OpenWeb API token](https://developers.openweb.com/reference/post_v1-publisher-auth.md): Generates a JWT token to be used for OpenWeb API
+- [Request export](https://developers.openweb.com/reference/post_v4-export.md): Initiates an export of comments, users, and ranks by Conversation ID or date range.
+- [Check export status](https://developers.openweb.com/reference/get_v4-export-status.md): Retrieves the status of the export
+- [List finished exports](https://developers.openweb.com/reference/get_v4-export-list.md): Lists finished exports
+- [Abort export](https://developers.openweb.com/reference/get_v4-export-abort.md): Cancels the export
+- [Request export](https://developers.openweb.com/reference/post_v2-export-comments.md)
+- [Check export status](https://developers.openweb.com/reference/get_v2-export-comments-status.md): Retrieves the status of the export
+- [List finished exports](https://developers.openweb.com/reference/get_v2-export-comments-list.md): Lists finished exports
+- [Abort export](https://developers.openweb.com/reference/get_v2-export-comments-abort.md): Cancels the export
+- [List top comments within an entire spot](https://developers.openweb.com/reference/get_top-comments-spot.md): Retrieve the top comments for a Spot ID in a given time period
+- [List top comments for an individual user](https://developers.openweb.com/reference/get_top-comments-user.md): Retrieve the top user comments in a given time period
+- [List top comments within a specific Conversation](https://developers.openweb.com/reference/get_top-comments-conversation.md): Retrieve the top Conversation comments from all time
+- [List trending articles for a spot](https://developers.openweb.com/reference/get_trending-articles.md): Retrieve the trending article for a Spot ID in a given time period
+- [Register a new user](https://developers.openweb.com/reference/post_sso-v1-user.md): Registers a new user
+- [Retrieve user details](https://developers.openweb.com/reference/get_sso-v1-user-primary-key.md): Retrieves user details
+- [Delete user](https://developers.openweb.com/reference/delete_sso-v1-user-primary-key.md): Deletes the OpenWeb user data of an existing SSO user  When requested by a user, you must delete the user’s OpenWeb account to remain GDPR compliant. Once the user has been deleted, comments by the deleted user remain and are linked to a random guest user.
+- [Configure additional user settings](https://developers.openweb.com/reference/get_sso-v1-register-user.md): Adds more information to the user, such as bio, notification settings, and email
+- [Update user details](https://developers.openweb.com/reference/get_sso-v1-update-user.md): Updates the OpenWeb user data of an existing SSO user
+- [Create article SEO markup](https://developers.openweb.com/reference/post-article.md): Returns the SEO markup used by Google and other search engines to index your pages
+- [Create comment SEO markup](https://developers.openweb.com/reference/post-comment.md): Returns the SEO markup used by Google and other search engines to index your comments
+- [Create Live Blog SEO markup](https://developers.openweb.com/reference/post-liveblog.md): Returns the SEO markup used by Google and other search engines to index your comments
+- [Create score and reviews SEO markup](https://developers.openweb.com/reference/post-reviews.md): Returns aggregate score and the individual reviews
+- [Get moderation policy by article ID](https://developers.openweb.com/reference/get-conversation-policy-spot-spot_id-post-post_id.md): Retrieves the moderation policy for a specific article
+- [Set moderation policy by article ID](https://developers.openweb.com/reference/post-conversation-policy-spot-spot_id-post-post_id-policy.md): Defines the moderation policy for an article
+
+## Recipes
+- [iOS SDK: Add a Pre-Conversation as a RecyclerView item.](https://developers.openweb.com/recipes/ios-sdk-add-a-pre-conversation-as-a-recyclerview-item.md)
+- [iOS SDK: Comment Creation Flow (async-await)](https://developers.openweb.com/recipes/ios-sdk-comment-creation-flow-async-await.md)
+- [iOS SDK: Comment Creation Flow](https://developers.openweb.com/recipes/ios-sdk-comment-creation-flow.md)
+- [iOS SDK: Comment Creation View Custom Action Handling (async-await)](https://developers.openweb.com/recipes/ios-sdk-comment-creation-view-async-await.md)
+- [iOS SDK: Comment Creation View](https://developers.openweb.com/recipes/ios-sdk-comment-creation-view.md)
+- [iOS SDK: Comment Thread Flow (async-await)](https://developers.openweb.com/recipes/ios-sdk-comment-thread-flow-async-await.md)
+- [iOS SDK: Comment Thread Flow](https://developers.openweb.com/recipes/ios-sdk-comment-thread-flow.md)
+- [iOS SDK: Comment Thread View (async-await)](https://developers.openweb.com/recipes/ios-sdk-comment-thread-view-async-await.md)
+- [iOS SDK: Comment Thread View](https://developers.openweb.com/recipes/ios-sdk-comment-thread-view.md)
+- [iOS SDK: Conversation Flow (async-await)](https://developers.openweb.com/recipes/ios-sdk-conversation-flow-async-await.md)
+- [iOS SDK: Conversation Flow](https://developers.openweb.com/recipes/ios-sdk-conversation-flow.md)
+- [iOS SDK: Conversation View (async-await)](https://developers.openweb.com/recipes/ios-sdk-conversation-view-async-await.md)
+- [iOS SDK: Conversation View](https://developers.openweb.com/recipes/ios-sdk-conversation-view.md)
+- [iOS SDK: Define an article](https://developers.openweb.com/recipes/ios-sdk-define-an-article.md)
+- [iOS SDK: Partial-Screen Conversation Flow (async-await)](https://developers.openweb.com/recipes/ios-sdk-partial-screen-conversation-flow-async-await.md)
+- [iOS SDK: Partial-Screen Conversation Flow](https://developers.openweb.com/recipes/ios-sdk-partial-screen-conversation-flow.md)
+- [iOS SDK: PreConversation Flow (async-await)](https://developers.openweb.com/recipes/ios-sdk-preconversation-flow-async-await.md)
+- [iOS SDK: PreConversation Flow](https://developers.openweb.com/recipes/ios-sdk-preconversation-flow.md)
+- [iOS SDK: PreConversation View](https://developers.openweb.com/recipes/ios-sdk-preconversation-view-1.md)
+- [iOS SDK: PreConversation View Custom Action Handling (async-await)](https://developers.openweb.com/recipes/ios-sdk-preconversation-view-async-await.md)
+- [iOS SDK: PreConversation View Custom Action Handling](https://developers.openweb.com/recipes/ios-sdk-preconversation-view.md)
+- [iOS SDK: Report Reason View (async-await)](https://developers.openweb.com/recipes/ios-sdk-report-reason-view-async-await.md)
+- [iOS SDK: Standard SSO Authentication](https://developers.openweb.com/recipes/ios-sdk-standard-sso-authentication.md)
+- [iOS SDK: Third-party Provider SSO Authentication](https://developers.openweb.com/recipes/ios-sdk-third-party-provider-sso-authentication.md)
+- [React Native SDK: PreConversation to Conversation with Callback](https://developers.openweb.com/recipes/react-native-preconversation-to-conversation-with-callback.md)
+- [React Native SDK: Comment Thread](https://developers.openweb.com/recipes/react-native-sdk-comment-thread.md)
+- [React Native SDK: Conversation](https://developers.openweb.com/recipes/react-native-sdk-conversation.md)

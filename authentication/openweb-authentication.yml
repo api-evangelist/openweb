@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.openweb.com/docs/authentication + https://developers.openweb.com/reference/post_v1-publisher-auth
+docs: https://developers.openweb.com/docs/getting-started
+summary:
+  types: [http, jwt, sso]
+  api_key_in: [body]
+  token_endpoint: https://api.openweb.com/v1/publisher/auth
+schemes:
+- name: PublisherApiToken
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: >-
+    Server-to-server Publisher API auth. POST spot_id + apikey (the Export/API
+    key from Admin Panel > Settings > Authentication Tokens) to
+    https://api.openweb.com/v1/publisher/auth to mint a short-lived JWT, then send
+    it as a Bearer token on subsequent Publisher API calls.
+  token_endpoint: https://api.openweb.com/v1/publisher/auth
+  credentials:
+    spot_id: Unique OpenWeb identifier for your property (Spot ID).
+    apikey: Export/API key generated in the OpenWeb Admin Panel.
+- name: SSO
+  type: sso
+  description: >-
+    End-user authentication for embedded Conversation. A codeA/codeB handshake:
+    the OpenWeb SDK issues an SSO session id (codeA) which the publisher backend
+    exchanges (with its secret access_token + user primary_key/user_name) for
+    codeB to complete login.
+  docs: https://developers.openweb.com/docs/single-sign-on
+- name: SSOWithJWT
+  type: openIdConnect
+  description: >-
+    Third-party SSO: authenticate users via an external identity provider by
+    passing a signed JWT (ssoWithJwt).
+  docs: https://developers.openweb.com/docs/implement-third-party-single-sign-on
+- name: WebhookClientSecretJWT
+  type: oauth2
+  scheme: client_secret_jwt
+  description: >-
+    Notification webhook verification. Supports an x-openweb-notification-event-webhook-token
+    header (partner_secret_token) or RFC 7523 client_secret_jwt (HS256, ~600s
+    expiry) to authenticate delivered events.
+  docs: https://developers.openweb.com/docs/notification-webhook

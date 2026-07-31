@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: https://updates.openweb.com (LaunchNotes)
+scheme: monthly-release-notes
+cadence: monthly (plus per-SDK release notes for iOS, Android, React Native)
+url: https://updates.openweb.com
+entries:
+- date: '2026-07-19'
+  title: iOS SDK Release Notes
+  type: sdk
+- date: '2026-07-01'
+  title: June 2026
+  type: release
+  highlights: New features, improvements, and safety enhancements.
+- date: '2026-06-18'
+  title: React Native SDK Release Notes
+  type: sdk
+- date: '2026-06-14'
+  title: Android SDK Release Notes
+  type: sdk
+- date: '2026-06-01'
+  title: May 2026
+  type: release
+  highlights: Enhancements across Admin Panel, safety, and social features; bug fixes.
+- date: '2026-05-04'
+  title: April 2026
+  type: release
+  highlights: Product updates across Admin Panel, safety, and the social layer.
+- date: '2026-04-07'
+  title: March 2026
+  type: release
+  highlights: Enhancements in ads, Admin Panel, identity, and social; social bug fixes.
+- date: '2026-03-03'
+  title: February 2026
+  type: release
+  highlights: Admin Panel and social enhancements; admin and social bug fixes.
+notes: >-
+  Recent window only; the live LaunchNotes feed at updates.openweb.com is the
+  source of truth.

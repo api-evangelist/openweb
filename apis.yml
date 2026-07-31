@@ -1,27 +1,132 @@
 aid: openweb
 name: OpenWeb
-description: 'OpenWeb is a company surfaced as a portfolio company of insight-partners and added to the
-  API Evangelist network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  OpenWeb (formerly Spot.IM) is a community and audience-engagement platform for
+  publishers, delivering OpenWebOS — a unified, end-to-end suite for building
+  community, harnessing first-party data, and driving sustainable revenue. Its
+  developer platform exposes a JWT-authenticated Publisher API (comment export,
+  top comments, trending articles, SSO user management, moderation policy, and
+  SEO markup services) at api.openweb.com, a notification webhook surface, and
+  web, Android, iOS, and React Native SDKs for embedding Conversation, Reactions,
+  Community Spotlight, Live Blog, and Standalone Ad experiences. Backed by
+  Insight Partners.
 url: https://raw.githubusercontent.com/api-evangelist/openweb/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.openweb.com/wp-content/uploads/2025/09/favicon-32x32-1.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - insight-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Consumer
-apis: []
+- Community
+- Comments
+- Audience Engagement
+- Publishing
+- Media
+- Moderation
+- Identity
+- SSO
+- Webhooks
+apis:
+- name: OpenWeb Publisher API
+  description: >-
+    JWT-authenticated REST API for publishers on the OpenWeb platform: request an
+    API token, export comments/users/ranks (v2 and v4), retrieve top comments and
+    trending articles, manage SSO users (register, retrieve, update, delete),
+    generate SEO markup, and read or set article moderation policy.
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - Comments
+  - Community
+  - Moderation
+  - SSO
+  - SEO
+  properties:
+  - type: Documentation
+    url: https://developers.openweb.com/docs/getting-started
+  - type: APIReference
+    url: https://developers.openweb.com/reference/post_v1-publisher-auth
+  - type: Authentication
+    url: authentication/openweb-authentication.yml
+  - type: Webhooks
+    url: asyncapi/openweb-notifications-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/openweb-domain-security.yml
 - type: Website
   url: https://www.openweb.com/
+- type: DeveloperPortal
+  url: https://developers.openweb.com/
+- type: Documentation
+  url: https://developers.openweb.com/docs/getting-started
+- type: APIReference
+  url: https://developers.openweb.com/reference/post_v1-publisher-auth
+- type: GettingStarted
+  url: https://developers.openweb.com/docs/getting-started
+- type: Blog
+  url: https://www.openweb.com/blog
+- type: GitHubOrganization
+  url: https://github.com/spotim
+- type: TermsOfService
+  url: https://www.openweb.com/terms-of-service
+- type: StatusPage
+  url: https://status.openweb.com
+- type: ChangeLog
+  url: https://updates.openweb.com
+- type: TrustCenter
+  url: https://trust.openweb.com
+- type: Packages
+  url: packages/openweb-packages.yml
+- type: SDKs
+  url: packages/openweb-packages.yml
+- type: Authentication
+  url: authentication/openweb-authentication.yml
+- type: Conventions
+  url: conventions/openweb-conventions.yml
+- type: Conformance
+  url: conformance/openweb-conformance.yml
+- type: Compliance
+  url: https://trust.openweb.com
+- type: Lifecycle
+  url: lifecycle/openweb-lifecycle.yml
+- type: ChangeLog
+  url: changelog/openweb-changelog.yml
+- type: Webhooks
+  url: asyncapi/openweb-notifications-webhooks.yml
+- type: Components
+  url: components/openweb-components.yml
+- type: MCPServer
+  url: mcp/openweb-mcp.yml
+- type: WellKnown
+  url: well-known/openweb-well-known.yml
+- type: LLMsTxt
+  url: llms/openweb-llms.txt

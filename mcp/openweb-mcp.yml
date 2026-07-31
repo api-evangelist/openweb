@@ -1,0 +1,64 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: >-
+  Derived from the documented OpenWeb Publisher API reference at
+  https://developers.openweb.com/ (no official hosted MCP server was found).
+server:
+  name: openweb
+  transport: http
+notes: >-
+  Candidate tool list mapped from the published Publisher API operations. No
+  first-party OpenWeb MCP server is published as of the generation date.
+tools:
+- name: request_api_token
+  description: Generate a JWT token for the OpenWeb Publisher API (spot_id + apikey).
+  source_operation: POST https://api.openweb.com/v1/publisher/auth
+- name: request_export_v4
+  description: Initiate an export of comments, users, and ranks by Conversation ID or date range.
+  source_operation: POST /v4/export
+- name: check_export_status_v4
+  description: Retrieve the status of a v4 export.
+  source_operation: GET /v4/export/status
+- name: list_exports_v4
+  description: List finished v4 exports.
+  source_operation: GET /v4/export/list
+- name: abort_export_v4
+  description: Cancel a v4 export.
+  source_operation: GET /v4/export/abort
+- name: list_top_comments_spot
+  description: Retrieve top comments for a Spot ID in a time period.
+  source_operation: GET /top-comments/spot
+- name: list_top_comments_user
+  description: Retrieve top comments for an individual user in a time period.
+  source_operation: GET /top-comments/user
+- name: list_top_comments_conversation
+  description: Retrieve top comments within a specific Conversation.
+  source_operation: GET /top-comments/conversation
+- name: list_trending_articles
+  description: Retrieve trending articles for a Spot ID in a time period.
+  source_operation: GET /trending-articles
+- name: register_user
+  description: Register a new SSO user.
+  source_operation: POST /sso/v1/user
+- name: get_user
+  description: Retrieve SSO user details by primary key.
+  source_operation: GET /sso/v1/user/{primary_key}
+- name: delete_user
+  description: Delete an SSO user's OpenWeb data (GDPR).
+  source_operation: DELETE /sso/v1/user/{primary_key}
+- name: update_user
+  description: Update SSO user details.
+  source_operation: GET /sso/v1/update-user
+- name: get_moderation_policy
+  description: Retrieve the moderation policy for a specific article.
+  source_operation: GET /conversation/policy/spot/{spot_id}/post/{post_id}
+- name: set_moderation_policy
+  description: Set the moderation policy for a specific article.
+  source_operation: POST /conversation/policy/spot/{spot_id}/post/{post_id}/policy
+- name: create_article_seo_markup
+  description: Generate SEO markup for an article.
+  source_operation: POST /article
+- name: create_reviews_seo_markup
+  description: Generate aggregate score and reviews SEO markup.
+  source_operation: POST /reviews

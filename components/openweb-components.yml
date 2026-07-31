@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.openweb.com/docs/getting-started
+loader:
+  name: OpenWeb Launcher
+  description: >-
+    A JavaScript launcher library at the core of every OpenWeb product; it
+    enables and configures products on a page (requires a Spot ID and Post ID)
+    and must not be lazy-loaded.
+families:
+- family: Conversation
+  components:
+  - name: Conversation
+    description: Full commenting/conversation experience with author badges.
+  - name: Social Reviews
+    description: Conversation experience with a star-rating aspect.
+  - name: Pre-Conversation
+    description: Compact conversation entry-point surface.
+- family: Engagement
+  components:
+  - name: Reactions
+    description: Lets readers express how they feel about content.
+  - name: Community Spotlight
+    description: Drives users to key initiatives (registration, subscriptions, CTAs).
+  - name: Popular in the Community
+    description: Surfaces popular community activity.
+  - name: Topic Tracker
+    description: Lets users follow topics/authors and get notified.
+  - name: Notification Bell
+    description: Surfaces new activity and lets users revisit conversations.
+  - name: Comment Counter
+    description: Shows engagement counts to help users find active conversations.
+- family: Content
+  components:
+  - name: Live Blog
+    description: Real-time live-blogging surface.
+- family: Monetization
+  components:
+  - name: Standalone Ad
+    description: Additional content-monetization ad unit (also an iOS IAU SDK).
+platforms:
+  web: "@open-web/react-sdk + JS launcher"
+  ios: OpenWeb iOS Social SDK (SwiftUI / OWUIComponents)
+  android: OpenWeb Android Social SDK (Jetpack Compose)
+  react_native: OpenWeb React Native SDK

@@ -1,0 +1,57 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.openweb.com/ (docs + API reference)
+authentication:
+  style: bearer-jwt
+  detail: >-
+    Publisher API calls carry a JWT minted from POST /v1/publisher/auth (spot_id +
+    apikey). See authentication/openweb-authentication.yml.
+identifiers:
+  spot_id: Publisher property identifier (Spot ID), from the Admin Panel.
+  post_id: Article/conversation identifier, recommended under 50 characters.
+  conversation_id: Derived per-article conversation identifier used across export and top-comment APIs.
+  sso_user_id: Publisher-side primary key for an SSO-registered user.
+versioning:
+  scheme: uri-path
+  detail: >-
+    Version prefixes appear in the path — export APIs ship as v2 and v4
+    (/v4/export/*), publisher auth as v1 (/v1/publisher/auth), SSO user
+    management as /sso/v1/*. Newer capabilities are introduced as parallel
+    versioned surfaces (v4 alongside v2) rather than in-place breaking changes.
+pagination:
+  style: job-based
+  detail: >-
+    The comment Export API is asynchronous: request an export, poll status, then
+    list/download finished exports (rather than page-cursor iteration). Top
+    comments and trending articles are scoped by time period.
+async_jobs:
+  detail: >-
+    Export is a request/status/list/abort lifecycle: POST /v4/export ->
+    GET /v4/export/status -> GET /v4/export/list -> GET /v4/export/abort.
+error_envelope:
+  detail: >-
+    No RFC 9457 problem+json contract is documented publicly; errors are returned
+    as standard HTTP status codes with JSON bodies. No formal error-code registry
+    is published.
+webhooks:
+  detail: >-
+    Notification events are pushed to a publisher-configured HTTPS endpoint with
+    exponential retry (retry_base default 2s, retry_max_count default 5, 10s
+    delivery timeout). See asyncapi/openweb-notifications-webhooks.yml.
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency-key header or contract is documented for the Publisher API.
+rate_limiting:
+  detail: >-
+    No public rate-limit headers or quota documentation were found; limits are
+    governed per plan/agreement.
+compliance:
+  detail: >-
+    GDPR user-data delete/export is a first-class API flow (DELETE /sso/v1/user/:primary_key,
+    export-and-delete-user-data). See conformance/openweb-conformance.yml.
+cross_references:
+  authentication: authentication/openweb-authentication.yml
+  webhooks: asyncapi/openweb-notifications-webhooks.yml
+  lifecycle: lifecycle/openweb-lifecycle.yml
+  changelog: changelog/openweb-changelog.yml

@@ -1,0 +1,58 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.openweb.com/docs/notification-webhook
+spec_type: Webhooks
+transport: https-post
+description: >-
+  OpenWeb pushes user-notification events to a publisher-configured HTTPS endpoint
+  via POST. Events are only sent for notifications a user has opted into.
+delivery:
+  method: POST
+  content_type: application/json
+  timeout_seconds: 10
+  retry_base_seconds: 2
+  retry_max_count: 5
+  retry_strategy: exponential-backoff-on-non-2xx
+auth:
+  methods:
+  - partner_secret_token
+  - client_secret_jwt
+  header: x-openweb-notification-event-webhook-token
+  jwt_detail: RFC 7523 client_secret_jwt, HS256, ~600s expiry; returns an access_token.
+configuration:
+  fields:
+  - endpoint
+  - auth_type
+  - registered_events (per channel: email, in-app)
+  - retry_base
+  - retry_max_count
+payload_fields:
+- event_id
+- channels
+- type
+- user (user_id, display_name, sso_user_id, registered)
+- conversation_id
+- conversation_title
+- action_link
+- timestamp
+events:
+- type: followee-commented
+  description: A followed user commented or replied.
+- type: liked-message
+  description: Someone liked your message.
+- type: message-auto-approved
+  description: The system auto-approved your message.
+- type: message-approved
+  description: A moderator approved your message.
+- type: message-rejected
+  description: A moderator rejected your message.
+- type: replied-message
+  description: Someone replied to your message.
+- type: topic-by-author
+  description: New article from a followed author.
+- type: topic-by-keyword
+  description: New article matching a followed keyword.
+- type: user-followed
+  description: Someone started following you.
+- type: user-mentioned
+  description: Someone mentioned you in a comment.

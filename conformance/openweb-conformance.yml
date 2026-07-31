@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://www.openweb.com/blog/safeguarding-data-to-build-a-better-more-trustworthy-web
+  + https://developers.openweb.com/docs/notification-webhook
+  + https://developers.openweb.com/docs/export-and-delete-user-data
+standards:
+- id: soc2-type-ii
+  conforms: true
+  evidence: >-
+    OpenWeb is SOC 2 Type II compliant following a company-wide audit conducted
+    by PwC assessing technical and organizational security controls.
+- id: gdpr
+  conforms: true
+  evidence: >-
+    First-class GDPR user-data export and delete flows (DELETE /sso/v1/user/:primary_key,
+    export-and-delete-user-data endpoints).
+- id: rfc7523-jwt-bearer
+  conforms: true
+  evidence: >-
+    Notification webhook client_secret_jwt authentication follows RFC 7523
+    (HS256 JWT bearer, ~600s expiry).
+- id: oauth2
+  conforms: partial
+  evidence: >-
+    Webhook delivery supports an OAuth2 client_secret_jwt assertion flow; the
+    Publisher API itself uses a bespoke JWT-token exchange, not full OAuth2.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json error contract is documented.
+- id: iso27001
+  conforms: unknown
+  evidence: Not confirmed publicly; SOC 2 Type II is the published certification.

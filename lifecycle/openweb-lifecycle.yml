@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.openweb.com/ + https://status.openweb.com + https://updates.openweb.com
+versioning:
+  scheme: uri-path
+  current: v4 (export), v1 (publisher auth, SSO)
+  detail: >-
+    Path-versioned surfaces; new major capabilities ship as parallel versions
+    (export v4 alongside v2) rather than in-place breaking changes.
+  docs: https://developers.openweb.com/docs/export-comments
+deprecation:
+  policy_url: null
+  detail: >-
+    No formal REST API deprecation/Sunset (RFC 8594) policy is published. SDKs
+    carry versioned migration guides (Android 1.x -> 2.x; iOS 2.x -> 3.x moving
+    from deprecated Flows & Views to the Components API).
+  sdk_migration_guides:
+  - https://developers.openweb.com/docs/android-migration-guides
+  - https://developers.openweb.com/docs/ios-migration-2x-3x
+status_page: https://status.openweb.com
+changelog: https://updates.openweb.com
+sla:
+  url: null
+  detail: No public SLA/uptime target document was found.

@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.openweb.com/ + npm registry + github.com/spotim
+packages:
+- language: javascript
+  registry: npm
+  name: "@open-web/react-sdk"
+  url: https://www.npmjs.com/package/@open-web/react-sdk
+  install: npm install @open-web/react-sdk
+  repository: https://github.com/SpotIM/react-sdk
+  description: React wrapper around OpenWeb's products (Conversation, Spotlight, Reactions).
+  official: true
+- language: swift
+  registry: cocoapods
+  name: SpotImCore
+  url: https://developers.openweb.com/docs/ios-getting-started
+  install: "pod 'SpotImCore'"
+  repository: https://github.com/SpotIM/openweb-ios-sdk-pod
+  description: OpenWeb iOS Social SDK (SwiftUI-compatible) for embedding Conversation.
+  official: true
+- language: kotlin
+  registry: docs
+  name: OpenWeb Android Social SDK
+  url: https://developers.openweb.com/docs/android-social-sdk-getting-started
+  description: OpenWeb Android Social SDK (Jetpack Compose support) for embedding Conversation.
+  official: true
+- language: javascript
+  registry: docs
+  name: OpenWeb React Native SDK
+  url: https://developers.openweb.com/docs/rn-getting-started
+  description: OpenWeb React Native SDK for embedding Conversation experiences.
+  official: true
