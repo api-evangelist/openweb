@@ -1,15 +1,13 @@
 generated: '2026-07-20'
 method: derived
 status: candidate
-source: >-
-  Derived from the documented OpenWeb Publisher API reference at
-  https://developers.openweb.com/ (no official hosted MCP server was found).
+source: Derived from the documented OpenWeb Publisher API reference at https://developers.openweb.com/
+  (no official hosted MCP server was found).
 server:
   name: openweb
   transport: http
-notes: >-
-  Candidate tool list mapped from the published Publisher API operations. No
-  first-party OpenWeb MCP server is published as of the generation date.
+notes: Candidate tool list mapped from the published Publisher API operations. No first-party OpenWeb
+  MCP server is published as of the generation date.
 tools:
 - name: request_api_token
   description: Generate a JWT token for the OpenWeb Publisher API (spot_id + apikey).
@@ -62,3 +60,9 @@ tools:
 - name: create_reviews_seo_markup
   description: Generate aggregate score and reviews SEO markup.
   source_operation: POST /reviews
+deployment:
+  mode: none
+  verified: derived
+  tools: 17
+  checked: '2026-08-12'
+  source: catalog MCP census
