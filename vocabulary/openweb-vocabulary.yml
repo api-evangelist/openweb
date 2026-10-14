@@ -1,0 +1,186 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/openweb-export-api-openapi.yml
+- openapi/openweb-moderation-policy-openapi.yml
+- openapi/openweb-publisher-authentication-api-openapi.yml
+- openapi/openweb-seo-service-openapi.yml
+- openapi/openweb-single-sign-on-api-openapi.yml
+vocabulary:
+  name: OpenWeb Domain Vocabulary
+  description: 'Terms declared by OpenWeb''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-14'
+  terms:
+  - term: moderation policy
+    definition: Moderation Policy
+    tags:
+    - Resource Group
+    source: openapi/openweb-moderation-policy-openapi.yml
+  - term: token
+    definition: Authorization token
+    tags:
+    - Resource Group
+    source: openapi/openweb-publisher-authentication-api-openapi.yml
+  - term: article
+    definition: SEO related to an article
+    tags:
+    - Resource Group
+    source: openapi/openweb-seo-service-openapi.yml
+  - term: comment
+    definition: SEO related to a comment
+    tags:
+    - Resource Group
+    source: openapi/openweb-seo-service-openapi.yml
+  - term: live blog
+    definition: SEO related to a live blog
+    tags:
+    - Resource Group
+    source: openapi/openweb-seo-service-openapi.yml
+  - term: score and reviews
+    definition: SEO related to scores and reviews
+    tags:
+    - Resource Group
+    source: openapi/openweb-seo-service-openapi.yml
+  - term: sso
+    definition: SSO-related calls
+    tags:
+    - Resource Group
+    source: openapi/openweb-single-sign-on-api-openapi.yml
+  - term: top comments
+    definition: Top Comments
+    tags:
+    - Resource Group
+    source: openapi/openweb-top-comments-api-openapi.yml
+  - term: trending articles
+    definition: Trending Articles
+    tags:
+    - Resource Group
+    source: openapi/openweb-trending-articles-api-openapi.yml
+  - term: conversation_id
+    definition: 'ID of the Conversation from which data is requested Use one of these approaches to obtain this value: Article Card 1. From your
+      OpenWeb Admin Panel, click **Moderation > Articles**. 2. Search for a comment associated with the Conversation. 3. On the comment card,
+      click **More > Copy conversation ID to clipboard**. Code 1. Locate the spot ID. Contact your OpenWeb representative if you do not know t'
+    tags:
+    - Object
+    source: openapi/openweb-export-api-openapi.yml#/components/schemas/conversation-id
+  - term: Conversation ID
+    definition: 'Object declared by the contract with fields: conversation_id, delimiter, from, max_records_in_file, until.'
+    tags:
+    - Object
+    source: openapi/openweb-export-api-openapi.yml#/components/schemas/conversation-id-option
+  - term: Date Range
+    definition: 'Object declared by the contract with fields: from, until, conversation_id, delimiter, max_records_in_file.'
+    tags:
+    - Object
+    source: openapi/openweb-export-api-openapi.yml#/components/schemas/date-range-option
+  - term: delimiter
+    definition: Character that separates individual data fields within each row of the .csv file By default, OpenWeb uses `,`.
+    tags:
+    - Enumeration
+    source: openapi/openweb-export-api-openapi.yml#/components/schemas/delimiter
+  - term: max_records_in_file
+    definition: Number of records per one .csv file
+    tags:
+    - Object
+    source: openapi/openweb-export-api-openapi.yml#/components/schemas/max_records_in_file
+  - term: until
+    definition: End date of the export date range in `YYYY-MM-DDTHH:MM:SSZ` RFC3339 format
+    tags:
+    - Object
+    source: openapi/openweb-export-api-openapi.yml#/components/schemas/until
+  - term: from
+    definition: Start date of the export date range in `YYYY-MM-DDTHH:MM:SSZ` RFC3339 format
+    tags:
+    - Object
+    source: openapi/openweb-export-api-openapi.yml#/components/schemas/from
+  - term: bio
+    definition: User bio When configuring a user bio, the bio cannot exceed 200 characters. This property can be passed with or without the `role`
+      or `settings` object.
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/bio
+  - term: role
+    definition: 'Permission level of the user **Possible values** - `admin`: Access to all sections of the system - `community-moderator`: Ability
+      to moderate comments within a Conversation, but no Admin Panel access - `journalist`: Ability to select top comments, but no Admin Panel
+      access - `moderator`: Access only to the moderation section - `registered`: Regular user with no assigned role (This is the default p'
+    tags:
+    - Enumeration
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/role
+  - term: settings
+    definition: Email and in-app notification settings
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/settings
+  - term: display_name
+    definition: '**Non-unique** personal identifier used prominently throughout the platform A display name has the following characteristics:
+      - Cannot exceed **30 characters** - Is comprised of a combination of letters, numbers, special characters, or spaces When not provided,
+      OpenWeb creates a display name from the `user_name`.'
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/display_name
+  - term: email
+    definition: Email of the user
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/email
+  - term: email_verified
+    definition: 'Indicates that the email of the user has been verified by the user **Possible Values**: - `false` (default) - `true` OpenWeb
+      only sends email notifications to verified email addresses.'
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/email_verified
+  - term: image_url
+    definition: URL of the profile image of the user This image is the avatar used for all comments created by the user. If the `image_url` is
+      not set, OpenWeb selects a random avatar from the avatar scheme for the user. To delete a set user image, send an empty string for this
+      parameter.
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/image_url
+  - term: is_blocked
+    definition: 'Identifies if the user has permission to post comments on the site associated the spot ID **Possible Values**: - `false`: User
+      has permission to post comments - `true`: User is on the blocked and restricted from posting comments - `null`: User’s access cannot be
+      determined and the request should be attempted again'
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/is_blocked
+  - term: location
+    definition: Location of the user
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/location
+  - term: primary_key
+    definition: Unique user ID generated by a Partner’s backend user management system
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/primary_key
+  - term: private_profile
+    definition: 'Indicates whether the user''s commenting history and profile can be viewed by others **Possible Values**: - `false` (default)
+      - `true`'
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/private_profile
+  - term: user_name
+    definition: 'Unique personal identifier used to differentiate between different users A username has the following characteristics: - Is **greater
+      than 3 characters**, but **less than 30 characters** - Can be comprised of foreign-language characters - **Cannot** be comprised of delimiters,
+      such as spaces, tabs, and other ASCII delimiters (`/t`, `/r`, and `/n`) - **Cannot** be comprised of special characters, s'
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/user_name
+  - term: user_metadata
+    definition: 'Object declared by the contract with fields: is_subscriber.'
+    tags:
+    - Object
+    source: openapi/openweb-single-sign-on-api-openapi.yml#/components/schemas/user_metadata
+  - term: v2
+    definition: 'Resource group in the contract; its operation POST /v2/export/comments: Request export'
+    tags:
+    - Resource Group
+    source: openapi/openweb-export-api-openapi.yml
+  - term: v4
+    definition: 'Resource group in the contract; its operation POST /v4/export: Initiates an export of comments, users, and ranks by Conversation
+      ID or date range.'
+    tags:
+    - Resource Group
+    source: openapi/openweb-export-api-openapi.yml

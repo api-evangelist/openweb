@@ -1,0 +1,82 @@
+[
+ {
+  "page": "https://developers.openweb.com/reference/post_v1-publisher-auth.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Publisher Authentication API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api.openweb.com"
+    }
+   ],
+   "tags": [
+    {
+     "name": "token",
+     "description": "Authorization token"
+    }
+   ],
+   "paths": {
+    "/v1/publisher/auth": {
+     "post": {
+      "summary": "Request an OpenWeb API token",
+      "responses": {
+       "200": {
+        "description": "OK",
+        "content": {
+         "application/json": {
+          "schema": {
+           "type": "object",
+           "properties": {
+            "token": {
+             "type": "string",
+             "description": "JWT token required for API authentication.\n\n**NOTE**: JWT tokens have a 24-hour validity period. And this endpoint enforces a rate limit of 1 request per second per IP address."
+            }
+           }
+          }
+         }
+        }
+       }
+      },
+      "parameters": [],
+      "requestBody": {
+       "description": "",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "required": [
+           "spot_id",
+           "apikey"
+          ],
+          "properties": {
+           "spot_id": {
+            "type": "string",
+            "description": "Unique OpenWeb identifier for your property\n\nIf you do not know your OpenWeb spot ID, please contact your OpenWeb representative."
+           },
+           "apikey": {
+            "type": "string",
+            "description": "Unique OpenWeb token\n\nFollow these steps to retrieve the API key:\n1. From your OpenWeb Admin Panel, click **Settings**.\n2. Under **Authentication Tokens**, click **Get Export v4 API key** to reveal the API Key.\n3. Copy the **Export v4 API key** value."
+           }
+          }
+         }
+        }
+       }
+      },
+      "description": "Generates a JWT token to be used for OpenWeb API",
+      "tags": [
+       "token"
+      ]
+     },
+     "parameters": []
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ }
+]

@@ -1,0 +1,89 @@
+generated: '2026-10-14'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 7
+  own: 6
+  other_domain: 0
+  platform: 1
+  roles:
+  - api
+  - other
+  - portal
+  - source
+  - status
+  - website
+hosts:
+- host: api.openweb.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: openweb.com
+  role: api
+  relation: own
+- host: developers.openweb.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - GettingStarted
+  serves:
+  - docs
+  registrable_domain: openweb.com
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: status.openweb.com
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: openweb.com
+  role: status
+  relation: own
+- host: trust.openweb.com
+  found_by:
+  - pointer
+  types:
+  - TrustCenter
+  - Compliance
+  serves: []
+  registrable_domain: openweb.com
+  role: other
+  relation: own
+- host: updates.openweb.com
+  found_by:
+  - pointer
+  types:
+  - ChangeLog
+  serves: []
+  registrable_domain: openweb.com
+  role: other
+  relation: own
+- host: www.openweb.com
+  found_by:
+  - pointer
+  types:
+  - BlogRSS
+  - Website
+  - Blog
+  - TermsOfService
+  serves: []
+  registrable_domain: openweb.com
+  role: website
+  relation: own

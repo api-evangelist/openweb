@@ -1,0 +1,465 @@
+openapi: 3.0.0
+info:
+  title: Top Comments API
+  version: '1.0'
+  contact:
+    name: OpenWeb
+    url: https://www.openweb.com/
+  description: This API fetches and sorts the top comments from a specific site, article, or user.
+servers:
+- url: https://api.openweb.com/engagement-api
+paths:
+  /top-comments-conversation:
+    get:
+      summary: List top comments within a specific Conversation
+      tags:
+      - top comments
+      responses:
+        '200':
+          $ref: '#/components/responses/CommentObject'
+      description: Retrieve the top Conversation comments from all time
+      parameters:
+      - $ref: '#/components/parameters/x-api-key'
+      - $ref: '#/components/parameters/x-conversation-id'
+      - $ref: '#/components/parameters/x-post-id'
+      - $ref: '#/components/parameters/x-spot-id'
+      - $ref: '#/components/parameters/x-count'
+  /top-comments-spot:
+    get:
+      summary: List top comments within an entire spot
+      tags:
+      - top comments
+      responses:
+        '200':
+          $ref: '#/components/responses/CommentObject'
+      description: Retrieve the top comments for a Spot ID in a given time period
+      parameters:
+      - $ref: '#/components/parameters/x-api-key'
+      - $ref: '#/components/parameters/x-spot-id'
+      - $ref: '#/components/parameters/x-count'
+      - $ref: '#/components/parameters/x-interval'
+      - $ref: '#/components/parameters/x-month'
+      - $ref: '#/components/parameters/x-weeks'
+      - $ref: '#/components/parameters/x-year'
+  /top-comments-user:
+    get:
+      summary: List top comments for an individual user
+      tags:
+      - top comments
+      responses:
+        '200':
+          $ref: '#/components/responses/CommentObject'
+      description: Retrieve the top user comments in a given time period
+      parameters:
+      - $ref: '#/components/parameters/x-api-key'
+      - $ref: '#/components/parameters/x-spot-id'
+      - $ref: '#/components/parameters/x-user-id'
+      - $ref: '#/components/parameters/x-count'
+      - $ref: '#/components/parameters/x-interval'
+      - $ref: '#/components/parameters/x-month'
+      - $ref: '#/components/parameters/x-weeks'
+      - $ref: '#/components/parameters/x-year'
+components:
+  parameters:
+    x-api-key:
+      name: x-api-key
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Unique OpenWeb engagement token<br /><br />Follow these steps to obtain the engagement token:<ol><li>From your OpenWeb Admin Dashboard, click <strong>Settings</strong>.</li><li>Under <strong>Authentication Tokens</strong>, copy the <strong>Engagement</strong> value.</li></ol><strong>NOTE:</strong> This value <strong>must not</strong> be exposed to users.
+    x-count:
+      name: x-count
+      in: header
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: Number of comments to return
+    x-month:
+      name: x-month
+      in: header
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 12
+        example: 3
+      description: 'Number of the month within the `x-year` in which comments were posted
+
+
+        The `x-month` and `x-interval` values determines the duration of comments returned:
+
+        - If `x-month` = `3` and `x-interval` = `one-month`, the API returns comments posted in March (month 3 of the year).
+
+        - If `x-month` = `3` and `x-interval` = `two-months` (default), the API returns comments posted in March (month 3 of the year) and February (the previous month).
+
+
+        **Default Value**: The month number of the current month.
+
+        '
+    x-spot-id:
+      name: x-spot-id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Spot ID of the partner
+    x-year:
+      name: x-year
+      in: header
+      required: false
+      schema:
+        type: integer
+      description: Year of the time range<br /><br />The current year is the default value.
+    x-interval:
+      name: x-interval
+      in: header
+      required: false
+      schema:
+        type: string
+        enum:
+        - one-week
+        - two-weeks
+        - one-month
+        - two-months
+        default: two-months
+      description: Period of time to return comments
+    x-weeks:
+      name: x-weeks
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 'Number of the week within the `x-month` of the `x-year` in which comments were posted
+
+
+        The `x-weeks` and `x-interval` values determine the duration of comments returned:
+
+        - If `x-weeks` = `3` and `x-interval` = `one-week`, the API returns comments posted in week 3 of the month of the year.
+
+        - If `x-weeks` = `3,4` and `x-interval` = `two-weeks`, the API returns comments posted in weeks 3 and 4 of the month of the year.
+
+
+        **NOTES**:
+
+        - If `x-interval` = `two-weeks`, the `x-weeks` value must be defined as two consecutive weeks separated by a comma, `3,4`.
+
+        - If `x-interval` = `one-month` or `two-months`, the `x-weeks` value is ignored.
+
+        '
+    x-user-id:
+      name: x-user-id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: ID for the user who wrote the comments
+    x-conversation-id:
+      name: x-conversation-id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 'Unique identifier for the Conversation or thread
+
+
+        Use one of these approaches to obtain this value:
+
+
+        <strong>Article Card</strong>
+
+        1. From your OpenWeb Admin Panel, click **Moderation > Articles**.
+
+        2. Search for a comment associated with the Conversation.
+
+        3. On the comment card, click **More > Copy conversation ID to clipboard**.
+
+
+        <strong>Code</strong>
+
+        1. Locate the spot ID. Contact your OpenWeb representative if you do not know this value.
+
+        2. Identify the post ID. This is the unique article identifier assigned to the article page when it is created.
+
+        3. Concatenate the spot ID and postID with an underscore
+
+        ```
+
+        spotID_postID
+
+        ```
+
+
+        <strong>Comment Card</strong>
+
+        1. From your OpenWeb Admin Panel, click **Moderation > Comments**.
+
+        2. Search for a comment associated with the Conversation.
+
+        3. On the comment card, click **More > Copy conversation ID to clipboard**.
+
+
+        **NOTE**: Only one of the `x-post-id` or `x-conversation-id` is required. If both values are included in the header, `x-post-id` will be used and `x-conversation-id` will be ignored.'
+    x-post-id:
+      name: x-post-id
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 'Unique article identifier that is specific to the article page
+
+
+        The ideal post ID has the following characteristics:
+
+        - Aligns with the URL slug (`an-article-title`) or article ID (`14325`)
+
+        - Is **less than 50 characters**, ideally 15 characters
+
+        - Uses a combination of letters, numbers, dashes (-), or hyphens (_)
+
+        - Except for the regex `[^\w\s\-\:\.\$\~]`, does not include special characters
+
+
+        **NOTE**: Only one of the `x-post-id` or `x-conversation-id` is required. If both values are included in the header, `x-post-id` will be used and `x-conversation-id` will be ignored.
+
+        '
+  responses:
+    CommentObject:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                comments:
+                - spot_id: SPOT_ID
+                  post_id: POST_ID
+                  article_name: ARTICLE_NAME
+                  article_url: ARTICLE_URL
+                  article_img: ARTICLE_IMG_URL
+                  conversation_id: SPOT_ID_POST_ID
+                  user_id: USER_ID
+                  username: USERNAME
+                  message_id: SPOT_ID_POST_ID_c_2dxlD797mA4wuiNLcJgDg9mAnIC
+                  content:
+                  - id: ANIMATION_ID
+                    originalHeight: 225
+                    originalUrl: https://media4.giphy.com/media/ANIMATION_ID/giphy.gif
+                    originalWidth: 250
+                    previewHeight: 63
+                    previewUrl: https://media4.giphy.com/media/ANIMATION_ID/giphy-preview.gif
+                    previewWidth: 70
+                    title: ANIMATION_TITLE
+                    type: animation
+                  - id: 160b1173579f25064410a57bd814e176
+                    text: <p>As far as I can see, the company has not yet made any profits.</p>
+                    type: text
+                  message_timestamp: 1710957487
+                  message_type: comment
+                  is_featured: false
+                  like_count: 5
+                  dislike_count: 0
+                  replies_count: 0
+                  user_profile_picture: USER_PROFILE_PICTURE_URL
+                  state: approved
+                  label:
+                    ids:
+                    - BEARISH
+                    section: stock
+            properties:
+              comments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    article_name:
+                      type: string
+                      description: Title or name of the article
+                    article_url:
+                      type: string
+                      description: URL of the article
+                    article_img:
+                      type: string
+                      description: Image associated with the article
+                    content:
+                      type: array
+                      description: "Possible properties of the content\r\n\r\nProperties returned depend the `content.type`."
+                      items:
+                        type: object
+                        properties:
+                          description:
+                            type: string
+                            description: Short description of the content
+                          embed:
+                            type: string
+                            description: HTML tag (`<embed>`) used to embed the media on a page
+                          frameType:
+                            type: string
+                            description: "Defines type of social media format the frame emulates\r\n\r\n**Possible Values**\r\n- `FACEBOOK`\r\n- `TWEET`"
+                          id:
+                            type: string
+                            description: Unique identifier for the content
+                          imageId:
+                            type: string
+                            description: Unique identifier for the image
+                          mediaHeight:
+                            type: number
+                            description: Height of the media
+                          mediaWidth:
+                            type: number
+                            description: Width of the media
+                          originalHeight:
+                            type: number
+                            description: Height dimension of the media before resizing
+                          originalUrl:
+                            type: string
+                            description: URL for the content
+                          originalWidth:
+                            type: number
+                            description: Width dimension of the media before resizing
+                          previewHeight:
+                            type: number
+                            description: Height dimension of the media preview
+                          previewUrl:
+                            type: string
+                            description: URL of the media preview
+                          previewWidth:
+                            type: number
+                            description: Width dimension of the media preview
+                          providerUrl:
+                            type: string
+                            description: URL of the provider
+                          thumbnailHeight:
+                            type: number
+                            description: Height of the thumbnail
+                          thumbnailUrl:
+                            type: string
+                            description: URL for the thumbnail
+                          thumbnailWidth:
+                            type: number
+                            description: Width of the thumbnail
+                          title:
+                            type: string
+                            description: Title of the content
+                          type:
+                            type: string
+                            description: "Type of content\r\n\r\n**Possible Values**\r\n- `animation`\r\n- `frame`\r\n- `image`\r\n- `link`\r\n- `mention`\r\n- `text`\r\n- `video`"
+                          text:
+                            type: string
+                            description: Raw content of the comment
+                          url:
+                            type: string
+                            description: URL for the content
+                          userId:
+                            type: string
+                            description: Unique identifier of a mentioned user
+                    conversation_id:
+                      type: string
+                      description: Unique identifier for the Conversation or thread
+                    dislike_count:
+                      type: number
+                      description: Number of dislikes received by the comment
+                    is_featured:
+                      type: boolean
+                      description: Indicates if the comment is featured
+                    label:
+                      type: object
+                      properties:
+                        ids:
+                          type: array
+                          description: Label names
+                          items:
+                            type: string
+                        section:
+                          type: string
+                          description: Section name
+                    like_count:
+                      type: number
+                      description: Number of likes received by the comment
+                    message_id:
+                      type: string
+                      description: Unique ID of the comment
+                    message_timestamp:
+                      type: number
+                      description: Date and time the comment was posted
+                    message_type:
+                      type: string
+                      description: "Type of message\r\n\r\nThis value will always be `comment`."
+                    post_id:
+                      type: string
+                      description: Unique identifier for the post
+                    replies_count:
+                      type: number
+                      description: Total number of replies to the comment
+                    spot_id:
+                      type: string
+                      description: Unique OpenWeb identifier for a property
+                    state:
+                      type: string
+                      description: "Status of the comment\r\n\r\n**Possible Values**\r\n- `approved`\r\n- `publish and moderate`\r\n- `rejected`\r\n- `require approval`\r\n"
+                    user_id:
+                      type: string
+                      description: Unique identifier for the commenter
+                    username:
+                      type: string
+                      description: Username of the commenter
+                    user_profile_picture:
+                      type: string
+                      description: URL of the profile image of the user
+          examples:
+            Comment with label and animation in content:
+              value:
+                comments:
+                - spot_id: SPOT_ID
+                  post_id: POST_ID
+                  article_name: ARTICLE_NAME
+                  article_url: ARTICLE_URL
+                  article_img: ARTICLE_IMG_URL
+                  conversation_id: SPOT_ID_POST_ID
+                  user_id: USER_ID
+                  username: USERNAME
+                  message_id: SPOT_ID_POST_ID_c_2dxlD797mA4wuiNLcJgDg9mAnIC
+                  content:
+                  - id: ANIMATION_ID
+                    originalHeight: 225
+                    originalUrl: https://media4.giphy.com/media/ANIMATION_ID/giphy.gif
+                    originalWidth: 250
+                    previewHeight: 63
+                    previewUrl: https://media4.giphy.com/media/ANIMATION_ID/giphy-preview.gif
+                    previewWidth: 70
+                    title: ANIMATION_TITLE
+                    type: animation
+                  - id: 160b1173579f25064410a57bd814e176
+                    text: <p>As far as I can see, the company has not yet made any profits.</p>
+                    type: text
+                  message_timestamp: 1710957487
+                  message_type: comment
+                  is_featured: false
+                  like_count: 5
+                  dislike_count: 0
+                  replies_count: 0
+                  user_profile_picture: USER_PROFILE_PICTURE_URL
+                  state: approved
+                  label:
+                    ids:
+                    - BEARISH
+                    section: stock
+tags:
+- name: top comments
+  description: Top Comments
+x-provenance:
+  method: searched
+  source: https://developers.openweb.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developers.openweb.com/reference/get_top-comments-conversation.md
+  - https://developers.openweb.com/reference/get_top-comments-spot.md
+  - https://developers.openweb.com/reference/get_top-comments-user.md
+  merge:
+    pages: 3
+    deduped: 12
+    conflicts_kept_first: 0

@@ -1,16 +1,15 @@
 aid: openweb
+
 name: OpenWeb
-description: >-
-  OpenWeb (formerly Spot.IM) is a community and audience-engagement platform for
-  publishers, delivering OpenWebOS — a unified, end-to-end suite for building
-  community, harnessing first-party data, and driving sustainable revenue. Its
-  developer platform exposes a JWT-authenticated Publisher API (comment export,
-  top comments, trending articles, SSO user management, moderation policy, and
-  SEO markup services) at api.openweb.com, a notification webhook surface, and
-  web, Android, iOS, and React Native SDKs for embedding Conversation, Reactions,
-  Community Spotlight, Live Blog, and Standalone Ad experiences. Backed by
-  Insight Partners.
+
+description: OpenWeb (formerly Spot.IM) is a community and audience-engagement platform for publishers, delivering OpenWebOS — a unified, end-to-end
+  suite for building community, harnessing first-party data, and driving sustainable revenue. Its developer platform exposes a JWT-authenticated
+  Publisher API (comment export, top comments, trending articles, SSO user management, moderation policy, and SEO markup services) at api.openweb.com,
+  a notification webhook surface, and web, Android, iOS, and React Native SDKs for embedding Conversation, Reactions, Community Spotlight, Live
+  Blog, and Standalone Ad experiences. Backed by Insight Partners.
+
 url: https://raw.githubusercontent.com/api-evangelist/openweb/refs/heads/main/apis.yml
+
 deliveryModel:
   model: saas
   open_source: false
@@ -22,6 +21,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -34,21 +34,32 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://www.openweb.com/wp-content/uploads/2025/09/favicon-32x32-1.png
+
 x-type: company
+
 x-source: vc-portfolio
+
 x-backed-by:
 - insight-partners
+
 x-tier: stub
+
 x-tier-reason: portfolio-lead
+
 x-enrichment:
   date: '2026-07-20'
   status: enriched
   artifacts_added: 13
   pass: local-v1
+
 specificationVersion: '0.23'
+
 created: '2026-07-17'
+
 modified: '2026-10-06'
+
 tags:
 - Company
 - Consumer
@@ -61,6 +72,7 @@ tags:
 - Identity
 - SSO
 - Webhook
+
 tags_raw:
 - Company
 - Consumer
@@ -73,36 +85,36 @@ tags_raw:
 - Identity
 - SSO
 - Webhooks
-apis:
-- name: OpenWeb Publisher API
-  description: >-
-    JWT-authenticated REST API for publishers on the OpenWeb platform: request an
-    API token, export comments/users/ranks (v2 and v4), retrieve top comments and
-    trending articles, manage SSO users (register, retrieve, update, delete),
-    generate SEO markup, and read or set article moderation policy.
-  humanURL: https://developers.openweb.com/
-  baseURL: https://api.openweb.com
-  tags:
-  - Comments
-  - Community
-  - Moderation
-  - SSO
-  - SEO
-  properties:
-  - type: Documentation
-    url: https://developers.openweb.com/docs/getting-started
-  - type: APIReference
-    url: https://developers.openweb.com/reference/post_v1-publisher-auth
-  - type: Authentication
-    url: authentication/openweb-authentication.yml
-  - type: Webhooks
-    url: asyncapi/openweb-notifications-webhooks.yml
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/openweb-agentic-access.yml
+- type: Spectral
+  url: rules/openweb-rules.yml
+- type: JSONLD
+  url: json-ld/openweb-context.jsonld
+- type: Vocabulary
+  url: vocabulary/openweb-vocabulary.yml
+- type: DataModel
+  url: data-model/openweb-data-model.yml
+- type: TrustCenter
+  url: security/openweb-trust-center.yml
+- type: Deprecation
+  url: lifecycle/openweb-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/openweb-problem-types.yml
+- type: Hosts
+  url: hosts/openweb-hosts.yml
+- type: Vendors
+  url: vendors/openweb-vendors.yml
+- type: PrivacyPolicy
+  url: https://www.openweb.com/de/privacy/
 - url: https://www.openweb.com/feed/
   type: BlogRSS
 - type: DomainSecurity
@@ -151,8 +163,110 @@ common:
   url: components/openweb-components.yml
 - type: X-MCPServerCandidate
   url: mcp/openweb-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published
+    API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting
+    the artifact-type surfaces with a server that does not exist.'
 - type: WellKnown
   url: well-known/openweb-well-known.yml
 - type: LLMsTxt
   url: llms/openweb-llms.txt
+
+apis:
+- name: OpenWeb Publisher API
+  description: 'JWT-authenticated REST API for publishers on the OpenWeb platform: request an API token, export comments/users/ranks (v2 and v4),
+    retrieve top comments and trending articles, manage SSO users (register, retrieve, update, delete), generate SEO markup, and read or set article
+    moderation policy.'
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - Comments
+  - Community
+  - Moderation
+  - SSO
+  - SEO
+  properties:
+  - type: Documentation
+    url: https://developers.openweb.com/docs/getting-started
+  - type: APIReference
+    url: https://developers.openweb.com/reference/post_v1-publisher-auth
+  - type: Authentication
+    url: authentication/openweb-authentication.yml
+  - type: Webhooks
+    url: asyncapi/openweb-notifications-webhooks.yml
+  aid: openweb:openweb-publisher-api
+- aid: openweb:openweb-export-api
+  name: OpenWeb Export API
+  description: The Export API from OpenWeb — 8 operation(s) for export.
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - Export
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-export-api-openapi.yml
+- aid: openweb:openweb-moderation-policy
+  name: OpenWeb moderation policy API
+  description: Moderation Policy
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - moderation policy
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-moderation-policy-openapi.yml
+- aid: openweb:openweb-publisher-authentication-api
+  name: OpenWeb Token API
+  description: Authorization token
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - token
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-publisher-authentication-api-openapi.yml
+- aid: openweb:openweb-seo-service
+  name: OpenWeb Article API
+  description: SEO related to an article
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - article
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-seo-service-openapi.yml
+- aid: openweb:openweb-single-sign-on-api
+  name: OpenWeb SSO API
+  description: SSO-related calls
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - sso
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-single-sign-on-api-openapi.yml
+- aid: openweb:openweb-top-comments-api
+  name: OpenWeb top comments API
+  description: Top Comments
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - top comments
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-top-comments-api-openapi.yml
+- aid: openweb:openweb-trending-articles-api
+  name: OpenWeb trending articles API
+  description: Trending Articles
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - trending articles
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-trending-articles-api-openapi.yml
+
+x-readme-harvest:
+  date: '2026-10-14'
+  ops: 24
+  tool: harvest-readme-openapi.py
+  portal: https://developers.openweb.com

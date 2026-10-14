@@ -1,0 +1,282 @@
+openapi: 3.0.0
+info:
+  title: SEO Service
+  version: '1.0'
+servers:
+- url: https://seo.spot.im/v2
+paths:
+  /article/live-blog/{spot_id}/{liveblog_id}:
+    post:
+      summary: Create Live Blog SEO markup
+      operationId: post-liveblog
+      responses:
+        '200':
+          description: OK
+      description: Returns the SEO markup used by Google and other search engines to index your comments
+      tags:
+      - live blog
+      parameters:
+      - $ref: '#/components/parameters/json'
+    parameters:
+    - $ref: '#/components/parameters/spot_id'
+    - schema:
+        type: string
+      name: liveblog_id
+      in: path
+      required: true
+      description: Unique Live Blog identifier
+  /article/{spot_id}/{post_id}:
+    post:
+      summary: Create article SEO markup
+      operationId: post-article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '@context':
+                    type: string
+                  '@type':
+                    type: string
+                  headline:
+                    type: string
+                  name:
+                    type: string
+                  thumbnailUrl:
+                    type: string
+                  description:
+                    type: string
+                  url:
+                    type: string
+                  image:
+                    type: object
+                    properties:
+                      '@context':
+                        type: string
+                      '@type':
+                        type: string
+                      url:
+                        type: string
+                      width:
+                        type: string
+                      height:
+                        type: string
+                  commentCount:
+                    type: integer
+                  aggregateRating:
+                    type: object
+                    properties:
+                      '@context':
+                        type: string
+                      '@type':
+                        type: string
+                      ratingValue:
+                        type: integer
+                      reviewCount:
+                        type: integer
+                      worstRating:
+                        type: integer
+                      bestRating:
+                        type: integer
+                  comment:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        '@context':
+                          type: string
+                        '@type':
+                          type: string
+                        datePublished:
+                          type: string
+                        author:
+                          type: object
+                          properties:
+                            '@context':
+                              type: string
+                            '@type':
+                              type: string
+                            name:
+                              type: string
+                        text:
+                          type: string
+                        upvoteCount:
+                          type: integer
+                        downvoteCount:
+                          type: integer
+                x-examples:
+                  Example 1:
+                    '@context': http://schema.org/
+                    '@type': Article
+                    headline: PitC1
+                    name: PitC1
+                    thumbnailUrl: https://images.spot.im/v1/production/rcgdsqrp7q7g1dr3ml1x
+                    description: null
+                    url: http://doctest.website/pitc/1.html
+                    image:
+                      '@context': http://schema.org/
+                      '@type': ImageObject
+                      url: https://images.spot.im/v1/production/rcgdsqrp7q7g1dr3ml1x
+                      width: '750'
+                      height: '750'
+                    commentCount: 6
+                    aggregateRating:
+                      '@context': http://schema.org/
+                      '@type': AggregateRating
+                      ratingValue: 0
+                      reviewCount: 0
+                      worstRating: 1
+                      bestRating: 5
+                    comment:
+                    - '@context': http://schema.org/
+                      '@type': Comment
+                      datePublished: '2020-05-06'
+                      author:
+                        '@context': http://schema.org/
+                        '@type': Person
+                        name: GreenFish
+                      text: Just another comment
+                      upvoteCount: 1
+                      downvoteCount: 0
+                    - '@context': http://schema.org/
+                      '@type': Comment
+                      datePublished: '2020-05-10'
+                      author:
+                        '@context': http://schema.org/
+                        '@type': Person
+                        name: AwesomeKevin
+                      text: My first mobile comment...Android. ok
+                      upvoteCount: 0
+                      downvoteCount: 1
+                    - '@context': http://schema.org/
+                      '@type': Comment
+                      datePublished: '2021-08-16'
+                      author:
+                        '@context': http://schema.org/
+                        '@type': Person
+                        name: Kevin
+                      text: Just a test
+                      upvoteCount: 0
+                      downvoteCount: 1
+                    - '@context': http://schema.org/
+                      '@type': Comment
+                      datePublished: '2020-05-07'
+                      author:
+                        '@context': http://schema.org/
+                        '@type': Person
+                        name: BorisYuzvinsky-kevinsworld
+                      text: yet another comment to the mix
+                      upvoteCount: 0
+                      downvoteCount: 0
+                    - '@context': http://schema.org/
+                      '@type': Comment
+                      datePublished: '2021-11-17'
+                      author:
+                        '@context': http://schema.org/
+                        '@type': Person
+                        name: DanL
+                      text: Dan-test comment.
+                      upvoteCount: 0
+                      downvoteCount: 0
+      description: Returns the SEO markup used by Google and other search engines to index your pages
+      tags:
+      - article
+      parameters:
+      - $ref: '#/components/parameters/json'
+    parameters:
+    - $ref: '#/components/parameters/post_id'
+    - $ref: '#/components/parameters/spot_id'
+  /comment/{spot_id}/{post_id}:
+    post:
+      summary: Create comment SEO markup
+      operationId: post-comment
+      responses:
+        '200':
+          description: OK
+      description: Returns the SEO markup used by Google and other search engines to index your comments
+      tags:
+      - comment
+      parameters:
+      - $ref: '#/components/parameters/json'
+    parameters:
+    - $ref: '#/components/parameters/spot_id'
+    - $ref: '#/components/parameters/post_id'
+  /stars-and-reviews/{spot_id}/{post_id}:
+    post:
+      summary: Create score and reviews SEO markup
+      operationId: post-reviews
+      responses:
+        '200':
+          description: OK
+      description: Returns aggregate score and the individual reviews
+      parameters:
+      - $ref: '#/components/parameters/json'
+      tags:
+      - score and reviews
+    parameters:
+    - $ref: '#/components/parameters/spot_id'
+    - $ref: '#/components/parameters/post_id'
+components:
+  parameters:
+    spot_id:
+      name: spot_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique OpenWeb identifier
+    post_id:
+      name: post_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 'Unique article identifier that is specific to the article page
+
+
+        The ideal post ID has the following characteristics:
+
+        - Aligns with the URL slug (`an-article-title`) or article ID (`14325`)
+
+        - Is **less than 50 characters**, ideally 15 characters
+
+        - Uses a combination of letters, numbers, dashes (-), or hyphens (_)
+
+        - Except for the regex `[^\w\s\-\:\.\$\~]`, does not include special characters
+
+        '
+    json:
+      name: json
+      in: query
+      required: false
+      schema:
+        type: boolean
+        example: true
+      description: Formats response into a JSON structure
+tags:
+- name: article
+  description: SEO related to an article
+- name: comment
+  description: SEO related to a comment
+- name: live blog
+  description: SEO related to a live blog
+- name: score and reviews
+  description: SEO related to scores and reviews
+x-provenance:
+  method: searched
+  source: https://developers.openweb.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developers.openweb.com/reference/post-article.md
+  - https://developers.openweb.com/reference/post-comment.md
+  - https://developers.openweb.com/reference/post-liveblog.md
+  - https://developers.openweb.com/reference/post-reviews.md
+  merge:
+    pages: 4
+    deduped: 8
+    conflicts_kept_first: 0

@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Publisher Authentication API
+  version: '1.0'
+servers:
+- url: https://api.openweb.com
+paths:
+  /v1/publisher/auth:
+    post:
+      summary: Request an OpenWeb API token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: 'JWT token required for API authentication.
+
+
+                      **NOTE**: JWT tokens have a 24-hour validity period. And this endpoint enforces a rate limit of 1 request per second per IP address.'
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - spot_id
+              - apikey
+              properties:
+                spot_id:
+                  type: string
+                  description: 'Unique OpenWeb identifier for your property
+
+
+                    If you do not know your OpenWeb spot ID, please contact your OpenWeb representative.'
+                apikey:
+                  type: string
+                  description: 'Unique OpenWeb token
+
+
+                    Follow these steps to retrieve the API key:
+
+                    1. From your OpenWeb Admin Panel, click **Settings**.
+
+                    2. Under **Authentication Tokens**, click **Get Export v4 API key** to reveal the API Key.
+
+                    3. Copy the **Export v4 API key** value.'
+      description: Generates a JWT token to be used for OpenWeb API
+      tags:
+      - token
+    parameters: []
+tags:
+- name: token
+  description: Authorization token
+x-provenance:
+  method: searched
+  source: https://developers.openweb.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developers.openweb.com/reference/post_v1-publisher-auth.md
+  merge:
+    pages: 1
+    deduped: 0
+    conflicts_kept_first: 0

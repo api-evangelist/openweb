@@ -1,0 +1,199 @@
+[
+ {
+  "page": "https://developers.openweb.com/reference/get_trending-articles.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Trending Articles API",
+    "version": "1.0",
+    "contact": {
+     "name": "OpenWeb",
+     "url": "https://www.openweb.com/"
+    },
+    "description": "This API fetches and sorts the trending articles from a specific spot."
+   },
+   "servers": [
+    {
+     "url": "https://api.openweb.com/engagement-api"
+    }
+   ],
+   "tags": [
+    {
+     "name": "trending articles",
+     "description": "Trending Articles"
+    }
+   ],
+   "paths": {
+    "/trending-articles": {
+     "get": {
+      "summary": "List trending articles for a spot",
+      "tags": [
+       "trending articles"
+      ],
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/ArticleObject"
+       }
+      },
+      "description": "Retrieve the trending article for a Spot ID in a given time period",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/x-api-key"
+       },
+       {
+        "$ref": "#/components/parameters/x-spot-id"
+       },
+       {
+        "$ref": "#/components/parameters/x-count"
+       },
+       {
+        "$ref": "#/components/parameters/x-interval"
+       }
+      ]
+     },
+     "parameters": []
+    }
+   },
+   "components": {
+    "parameters": {
+     "x-api-key": {
+      "name": "x-api-key",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb engagement token<br /><br />Follow these steps to obtain the engagement token:<ol><li>From your OpenWeb Admin Dashboard, click <strong>Settings</strong>.</li><li>Under <strong>Authentication Tokens</strong>, copy the <strong>Engagement</strong> value.</li></ol><strong>NOTE:</strong> This value <strong>must not</strong> be exposed to users."
+     },
+     "x-count": {
+      "name": "x-count",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 10
+      },
+      "description": "Number of articles to return"
+     },
+     "x-spot-id": {
+      "name": "x-spot-id",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Spot ID of the partner"
+     },
+     "x-interval": {
+      "name": "x-interval",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "enum": [
+        "day",
+        "week",
+        "month"
+       ],
+       "default": "day"
+      },
+      "description": "Period of time (last day, week, or month) to return highest trending articles"
+     }
+    },
+    "responses": {
+     "ArticleObject": {
+      "description": "Example response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "articles": {
+           "type": "array",
+           "x-stoplight": {
+            "id": "2qocwifmzsxbd"
+           },
+           "description": "Trending articles for the spot within the interval specified the API request header",
+           "items": {
+            "type": "object",
+            "properties": {
+             "url": {
+              "type": "string",
+              "description": "URL of the article",
+              "example": "https://www.domain.com/article-title"
+             },
+             "title": {
+              "type": "string",
+              "description": "Title or name of the article"
+             },
+             "thumbnail_url": {
+              "type": "string",
+              "description": "URL for the thumbnail"
+             },
+             "SpotID": {
+              "type": "string",
+              "description": "Unique OpenWeb identifier for a property",
+              "example": "sp_Iba9aFpQ"
+             },
+             "PostID": {
+              "type": "string",
+              "description": "Unique identifier for the post",
+              "example": "e8475866-40d2-4b45-964a-ce0edg483f744"
+             },
+             "ArticleTags": {
+              "type": "array",
+              "description": "Comma-delimited list of tags associated with the article",
+              "items": {
+               "type": "string",
+               "example": "\"Donald Trump\",\"Stormy Daniels\", \"Susan Necheles\", \"Trump Organization\""
+              }
+             },
+             "ConversationID": {
+              "type": "string",
+              "description": "Unique identifier for the Conversation or thread",
+              "example": "sp_Iba9aFpQ_e8475866-40d2-4b45-964a-ce0edg483f744"
+             },
+             "TotalCommentCount": {
+              "type": "integer",
+              "description": "Total comment count of the article",
+              "example": 5340
+             },
+             "TotalReplyCount": {
+              "type": "integer",
+              "description": "Total reply count of the article",
+              "example": 6845
+             },
+             "IntervalCommentCount": {
+              "type": "integer",
+              "description": "Count of comments added during the requested time interval",
+              "example": 5340
+             },
+             "IntervalReplayCount": {
+              "type": "integer",
+              "description": "Count of replies added during the requested time interval",
+              "example": 6845
+             },
+             "ArticleDate": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Unix timestamp of the article",
+              "example": 1715258940
+             }
+            }
+           }
+          }
+         }
+        },
+        "examples": {}
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ }
+]

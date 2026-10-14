@@ -1,0 +1,241 @@
+[
+ {
+  "page": "https://developers.openweb.com/reference/get-conversation-policy-spot-spot_id-post-post_id.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Moderation Policy",
+    "version": "1.0",
+    "description": "OpenWeb's Moderation API enables you to manage moderation policies:\n\n- View the existing moderation policy that has been applied to an article\n- Create a new moderation policy for an article"
+   },
+   "servers": [
+    {
+     "url": "https://open-api.spot.im"
+    }
+   ],
+   "tags": [
+    {
+     "name": "moderation policy",
+     "description": "Moderation Policy"
+    }
+   ],
+   "paths": {
+    "/conversation-policy/spot/{spot_id}/post/{post_id}": {
+     "get": {
+      "summary": "Get moderation policy by article ID",
+      "operationId": "get-conversation-policy-spot-spot_id-post-post_id",
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/ModerationPolicy"
+       }
+      },
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/moderation_token"
+       }
+      ],
+      "description": "Retrieves the moderation policy for a specific article",
+      "tags": [
+       "moderation policy"
+      ]
+     },
+     "parameters": [
+      {
+       "$ref": "#/components/parameters/post_id"
+      },
+      {
+       "$ref": "#/components/parameters/spot_id"
+      }
+     ]
+    }
+   },
+   "components": {
+    "parameters": {
+     "spot_id": {
+      "name": "spot_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb identifier"
+     },
+     "post_id": {
+      "name": "post_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique article identifier that is specific to the article page\n\nThis value is defined when the <a href=\"https://developers.openweb.com/docs/conversation\" target=\"_blank\">Conversation</a> is embedded on a page.\n"
+     },
+     "moderation_token": {
+      "name": "token",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb export token\n\n1. From your OpenWeb Admin Dashboard, click **Settings > General**.\n2. Under **Authentication Tokens**, copy the **Moderation** token.\n"
+     }
+    },
+    "responses": {
+     "ModerationPolicy": {
+      "description": "Example response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "x-examples": {
+          "Example 1": {
+           "default_policy": "require_approval"
+          }
+         },
+         "properties": {
+          "default_policy": {
+           "type": "string",
+           "description": "Moderation permission to apply to the article\n\n**Possible Values**:\n- `spot_policy`: (default) Uses the site's currently set moderation policy\n- `approve_all`: Approve and publish comments automatically\n- `publish_and_moderate`: Requires that all comments (even auto-approved comments) be manually reviewed\n- `require_approval`: Requires that all comments be pre-moderated and manually reviewed"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/post-conversation-policy-spot-spot_id-post-post_id-policy.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Moderation Policy",
+    "version": "1.0",
+    "description": "OpenWeb's Moderation API enables you to manage moderation policies:\n\n- View the existing moderation policy that has been applied to an article\n- Create a new moderation policy for an article"
+   },
+   "servers": [
+    {
+     "url": "https://open-api.spot.im"
+    }
+   ],
+   "tags": [
+    {
+     "name": "moderation policy",
+     "description": "Moderation Policy"
+    }
+   ],
+   "paths": {
+    "/conversation-policy/spot/{spot_id}/post/{post_id}/{policy}": {
+     "parameters": [
+      {
+       "$ref": "#/components/parameters/spot_id"
+      },
+      {
+       "$ref": "#/components/parameters/post_id"
+      },
+      {
+       "$ref": "#/components/parameters/policy"
+      }
+     ],
+     "post": {
+      "summary": "Set moderation policy by article ID",
+      "tags": [
+       "moderation policy"
+      ],
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/ModerationPolicy"
+       }
+      },
+      "operationId": "post-conversation-policy-spot-spot_id-post-post_id-policy",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/moderation_token"
+       }
+      ],
+      "description": "Defines the moderation policy for an article"
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "spot_id": {
+      "name": "spot_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb identifier"
+     },
+     "post_id": {
+      "name": "post_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique article identifier that is specific to the article page\n\nThis value is defined when the <a href=\"https://developers.openweb.com/docs/conversation\" target=\"_blank\">Conversation</a> is embedded on a page.\n"
+     },
+     "moderation_token": {
+      "name": "token",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb export token\n\n1. From your OpenWeb Admin Dashboard, click **Settings > General**.\n2. Under **Authentication Tokens**, copy the **Moderation** token.\n"
+     },
+     "policy": {
+      "name": "policy",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "enum": [
+        "spot_policy",
+        "approve_all",
+        "publish_and_moderate",
+        "require_approval"
+       ],
+       "example": "spot_policy"
+      },
+      "description": "Moderation permission to apply to the article\n\n**Possible Values**:\n- `spot_policy`: (default) Uses the site's currently set moderation policy\n- `approve_all`: Approve and publish comments automatically\n- `publish_and_moderate`: Requires that all comments (even auto-approved comments) be manually reviewed\n- `require_approval`: Requires that all comments be pre-moderated and manually reviewed\n"
+     }
+    },
+    "responses": {
+     "ModerationPolicy": {
+      "description": "Example response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "x-examples": {
+          "Example 1": {
+           "default_policy": "require_approval"
+          }
+         },
+         "properties": {
+          "default_policy": {
+           "type": "string",
+           "description": "Moderation permission to apply to the article\n\n**Possible Values**:\n- `spot_policy`: (default) Uses the site's currently set moderation policy\n- `approve_all`: Approve and publish comments automatically\n- `publish_and_moderate`: Requires that all comments (even auto-approved comments) be manually reviewed\n- `require_approval`: Requires that all comments be pre-moderated and manually reviewed"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ }
+]

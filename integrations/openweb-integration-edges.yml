@@ -1,0 +1,16 @@
+generated: '2026-10-14'
+method: none
+source:
+- https://zapier.com/apps/openweb/integrations
+- https://n8n.io/integrations/openweb/
+- https://composio.dev/toolkits/openweb
+- https://monid.ai/tools/openweb
+checked:
+- https://composio.dev/toolkits/openweb
+- https://monid.ai/tools/openweb
+- https://n8n.io/integrations/openweb/
+- https://zapier.com/apps/openweb/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []

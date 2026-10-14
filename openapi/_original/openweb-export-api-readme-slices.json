@@ -1,0 +1,889 @@
+[
+ {
+  "page": "https://developers.openweb.com/reference/post_v4-export.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Export API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api-exporter.openweb.com"
+    }
+   ],
+   "paths": {
+    "/v4/export": {
+     "post": {
+      "summary": "Request export",
+      "responses": {
+       "202": {
+        "$ref": "#/components/responses/PostExportResponse"
+       },
+       "409": {
+        "description": "Same request already in progress"
+       }
+      },
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/jwt-token"
+       },
+       {
+        "$ref": "#/components/parameters/x-spot-id"
+       }
+      ],
+      "requestBody": {
+       "$ref": "#/components/requestBodies/PostExportRequest"
+      },
+      "description": "Initiates an export of comments, users, and ranks by Conversation ID or date range.",
+      "tags": [
+       "v4"
+      ]
+     }
+    }
+   },
+   "components": {
+    "schemas": {
+     "conversation-id": {
+      "title": "conversation_id",
+      "type": "string",
+      "description": "ID of the Conversation from which data is requested\n\nUse one of these approaches to obtain this value:\n\n<strong>Article Card</strong>\n1. From your OpenWeb Admin Panel, click **Moderation > Articles**.\n2. Search for a comment associated with the Conversation.\n3. On the comment card, click **More > Copy conversation ID to clipboard**.\n\n<strong>Code</strong>\n1. Locate the spot ID. Contact your OpenWeb representative if you do not know this value.\n2. Identify the post ID. This is the unique article identifier assigned to the article page when it is created.\n3. Concatenate the spot ID and postID with an underscore\n```\nspotID_postID\n```\n\n<strong>Comment Card</strong>\n1. From your OpenWeb Admin Panel, click **Moderation > Comments**.\n2. Search for a comment associated with the Conversation.\n3. On the comment card, click **More > Copy conversation ID to clipboard**.\n\n</details>"
+     },
+     "conversation-id-option": {
+      "title": "Conversation ID",
+      "type": "object",
+      "required": [
+       "conversation_id"
+      ],
+      "properties": {
+       "conversation_id": {
+        "$ref": "#/components/schemas/conversation-id"
+       },
+       "delimiter": {
+        "$ref": "#/components/schemas/delimiter"
+       },
+       "from": {
+        "$ref": "#/components/schemas/from"
+       },
+       "max_records_in_file": {
+        "$ref": "#/components/schemas/max_records_in_file"
+       },
+       "until": {
+        "$ref": "#/components/schemas/until"
+       }
+      }
+     },
+     "date-range-option": {
+      "title": "Date Range",
+      "type": "object",
+      "required": [
+       "from",
+       "until"
+      ],
+      "properties": {
+       "from": {
+        "$ref": "#/components/schemas/from"
+       },
+       "until": {
+        "$ref": "#/components/schemas/until"
+       },
+       "conversation_id": {
+        "$ref": "#/components/schemas/conversation-id"
+       },
+       "delimiter": {
+        "$ref": "#/components/schemas/delimiter"
+       },
+       "max_records_in_file": {
+        "$ref": "#/components/schemas/max_records_in_file"
+       }
+      }
+     },
+     "delimiter": {
+      "type": "string",
+      "description": "Character that separates individual data fields within each row of the .csv file\n\nBy default, OpenWeb uses `,`.\n",
+      "enum": [
+       ",",
+       ";"
+      ]
+     },
+     "max_records_in_file": {
+      "type": "integer",
+      "maximum": 100000,
+      "exclusiveMaximum": false,
+      "example": 10000,
+      "description": "Number of records per one .csv file"
+     },
+     "until": {
+      "title": "until",
+      "type": "string",
+      "description": "End date of the export date range in `YYYY-MM-DDTHH:MM:SSZ` <a href=\"https://www.ietf.org/rfc/rfc3339.txt\" target=\"_blank\">RFC3339</a> format"
+     },
+     "from": {
+      "title": "from",
+      "type": "string",
+      "description": "Start date of the export date range in `YYYY-MM-DDTHH:MM:SSZ` <a href=\"https://www.ietf.org/rfc/rfc3339.txt\" target=\"_blank\">RFC3339</a> format"
+     }
+    },
+    "parameters": {
+     "jwt-token": {
+      "name": "Authorization",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "example": "Authorization: Bearer JWT_TOKEN"
+      },
+      "description": "JWT token to be used for OpenWeb API\n\nYou must obtain the JWT token by making a <a href=\"https://developers.openweb.com/reference/post_v1-publisher-auth\" target=\"_blank\">POST /v1/publisher/auth</a> call.\n\nIn the API call, the JWT token must be preceded by the word `Bearer`.\n\n**Example**: `Authorization: Bearer JWT_TOKEN`\n"
+     },
+     "x-spot-id": {
+      "name": "x-spot-id",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb identifier for the property from which data is requested<br /><br />If you do not know your OpenWeb spot ID, please contact your OpenWeb representative."
+     }
+    },
+    "requestBodies": {
+     "PostExportRequest": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "x-examples": {
+          "Example 1": {
+           "from": "2022-07-30T00:00:00Z",
+           "until": "2022-07-30T23:59:00Z",
+           "spot_id": "SPOT_ID",
+           "conversation_id": "CONVERSATION_ID"
+          }
+         },
+         "oneOf": [
+          {
+           "$ref": "#/components/schemas/date-range-option"
+          },
+          {
+           "$ref": "#/components/schemas/conversation-id-option"
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    "responses": {
+     "PostExportResponse": {
+      "description": "Example response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "x-examples": {
+          "Example 1": {
+           "status_link": "STATUS_LINK",
+           "status": "pending",
+           "request_id": "REQUEST_ID"
+          }
+         },
+         "properties": {
+          "request_id": {
+           "type": "string",
+           "description": "Unique ID of the export request"
+          },
+          "status": {
+           "description": "State of the export request",
+           "type": "string",
+           "enum": [
+            "pending"
+           ]
+          },
+          "status_link": {
+           "type": "string",
+           "description": "Check status endpoint"
+          }
+         }
+        },
+        "examples": {
+         "Example 1": {
+          "value": {
+           "request_id": "REQUEST_ID",
+           "status": "pending",
+           "status_link": "STATUS_LINK"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_v4-export-status.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Export API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api-exporter.openweb.com"
+    }
+   ],
+   "paths": {
+    "/v4/export/status": {
+     "get": {
+      "summary": "Check export status",
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/GetExportStatus"
+       }
+      },
+      "description": "Retrieves the status of the export",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/jwt-token"
+       },
+       {
+        "$ref": "#/components/parameters/id-v4"
+       },
+       {
+        "$ref": "#/components/parameters/x-spot-id"
+       }
+      ],
+      "tags": [
+       "v4"
+      ]
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "id-v4": {
+      "name": "id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique ID of an export request<br /><br /> This value is returned in the API response to a `POST /v4/export` call."
+     },
+     "jwt-token": {
+      "name": "Authorization",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "example": "Authorization: Bearer JWT_TOKEN"
+      },
+      "description": "JWT token to be used for OpenWeb API\n\nYou must obtain the JWT token by making a <a href=\"https://developers.openweb.com/reference/post_v1-publisher-auth\" target=\"_blank\">POST /v1/publisher/auth</a> call.\n\nIn the API call, the JWT token must be preceded by the word `Bearer`.\n\n**Example**: `Authorization: Bearer JWT_TOKEN`\n"
+     },
+     "x-spot-id": {
+      "name": "x-spot-id",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb identifier for the property from which data is requested<br /><br />If you do not know your OpenWeb spot ID, please contact your OpenWeb representative."
+     }
+    },
+    "responses": {
+     "GetExportStatus": {
+      "description": "Example response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "x-examples": {
+          "Example 1": {
+           "links": [
+            "...",
+            "...",
+            "..."
+           ],
+           "status": "done",
+           "status_link": "https://api.openweb.com/v4/export/status?id=EXPORT_REQUEST_ID"
+          }
+         },
+         "properties": {
+          "links": {
+           "type": "array",
+           "description": "Secured URLs to an export download, present only when `\"status\": \"done\"`",
+           "items": {
+            "type": "string"
+           }
+          },
+          "status": {
+           "description": "State of the export request",
+           "type": "string",
+           "enum": [
+            "aborted",
+            "done",
+            "failed",
+            "in_progress",
+            "pending"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_v4-export-list.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Export API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api-exporter.openweb.com"
+    }
+   ],
+   "paths": {
+    "/v4/export/list": {
+     "get": {
+      "summary": "List finished exports",
+      "responses": {
+       "200": {
+        "description": "OK"
+       }
+      },
+      "description": "Lists finished exports",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/jwt-token"
+       },
+       {
+        "$ref": "#/components/parameters/limit"
+       },
+       {
+        "$ref": "#/components/parameters/offset"
+       },
+       {
+        "$ref": "#/components/parameters/x-spot-id"
+       }
+      ],
+      "tags": [
+       "v4"
+      ]
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "limit": {
+      "name": "limit",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Limit of records returned"
+     },
+     "offset": {
+      "name": "offset",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Offset for records"
+     },
+     "jwt-token": {
+      "name": "Authorization",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "example": "Authorization: Bearer JWT_TOKEN"
+      },
+      "description": "JWT token to be used for OpenWeb API\n\nYou must obtain the JWT token by making a <a href=\"https://developers.openweb.com/reference/post_v1-publisher-auth\" target=\"_blank\">POST /v1/publisher/auth</a> call.\n\nIn the API call, the JWT token must be preceded by the word `Bearer`.\n\n**Example**: `Authorization: Bearer JWT_TOKEN`\n"
+     },
+     "x-spot-id": {
+      "name": "x-spot-id",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb identifier for the property from which data is requested<br /><br />If you do not know your OpenWeb spot ID, please contact your OpenWeb representative."
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_v4-export-abort.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Export API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api-exporter.openweb.com"
+    }
+   ],
+   "paths": {
+    "/v4/export/abort": {
+     "get": {
+      "summary": "Abort export",
+      "responses": {
+       "202": {
+        "description": "Accepted"
+       }
+      },
+      "description": "Cancels the export",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/jwt-token"
+       },
+       {
+        "$ref": "#/components/parameters/id-v4"
+       },
+       {
+        "$ref": "#/components/parameters/x-spot-id"
+       }
+      ],
+      "tags": [
+       "v4"
+      ]
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "id-v4": {
+      "name": "id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique ID of an export request<br /><br /> This value is returned in the API response to a `POST /v4/export` call."
+     },
+     "jwt-token": {
+      "name": "Authorization",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "example": "Authorization: Bearer JWT_TOKEN"
+      },
+      "description": "JWT token to be used for OpenWeb API\n\nYou must obtain the JWT token by making a <a href=\"https://developers.openweb.com/reference/post_v1-publisher-auth\" target=\"_blank\">POST /v1/publisher/auth</a> call.\n\nIn the API call, the JWT token must be preceded by the word `Bearer`.\n\n**Example**: `Authorization: Bearer JWT_TOKEN`\n"
+     },
+     "x-spot-id": {
+      "name": "x-spot-id",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb identifier for the property from which data is requested<br /><br />If you do not know your OpenWeb spot ID, please contact your OpenWeb representative."
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/post_v2-export-comments.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Export API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api-exporter.openweb.com"
+    }
+   ],
+   "paths": {
+    "/v2/export/comments": {
+     "post": {
+      "summary": "Request export",
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/PostExportResponse"
+       }
+      },
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/apikey"
+       }
+      ],
+      "requestBody": {
+       "$ref": "#/components/requestBodies/PostExportCommentsRequest"
+      },
+      "tags": [
+       "v2"
+      ]
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "apikey": {
+      "name": "apikey",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb export token<br /><br />Follow these steps to obtain the export token:<ol><li>From your OpenWeb Admin Dashboard, click <strong>Settings</strong>.</li><li>Under <strong>Authentication Tokens</strong>, click <strong>ApiKey</strong>.</li><li>Copy the key.</li></ol>"
+     }
+    },
+    "requestBodies": {
+     "PostExportCommentsRequest": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "x-examples": {
+          "Example 1": {
+           "since": "2022-07-30T00:00:00Z",
+           "to": "2022-07-30T23:59:00Z"
+          }
+         },
+         "required": [
+          "since",
+          "to"
+         ],
+         "properties": {
+          "since": {
+           "type": "string",
+           "description": "Start date of the export date range in `YYYY-MM-DDTHH:MM:SSZ` <a href=\"https://www.ietf.org/rfc/rfc3339.txt\" target=\"_blank\">RFC3339</a> format",
+           "example": "2018-12-01T00:00:00Z"
+          },
+          "to": {
+           "type": "string",
+           "example": "2018-12-02T00:00:00Z",
+           "description": "End date of the export date range in `YYYY-MM-DDTHH:MM:SSZ` <a href=\"https://www.ietf.org/rfc/rfc3339.txt\" target=\"_blank\">RFC3339</a> format\n\nIf not set, the default value is the current date and time."
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses": {
+     "PostExportResponse": {
+      "description": "Example response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "x-examples": {
+          "Example 1": {
+           "status_link": "STATUS_LINK",
+           "status": "pending",
+           "request_id": "REQUEST_ID"
+          }
+         },
+         "properties": {
+          "request_id": {
+           "type": "string",
+           "description": "Unique ID of the export request"
+          },
+          "status": {
+           "description": "State of the export request",
+           "type": "string",
+           "enum": [
+            "pending"
+           ]
+          },
+          "status_link": {
+           "type": "string",
+           "description": "Check status endpoint"
+          }
+         }
+        },
+        "examples": {
+         "Example 1": {
+          "value": {
+           "request_id": "REQUEST_ID",
+           "status": "pending",
+           "status_link": "STATUS_LINK"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_v2-export-comments-status.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Export API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api-exporter.openweb.com"
+    }
+   ],
+   "paths": {
+    "/v2/export/comments/status": {
+     "get": {
+      "summary": "Check export status",
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/GetExportStatus"
+       }
+      },
+      "description": "Retrieves the status of the export",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/apikey"
+       },
+       {
+        "$ref": "#/components/parameters/id-v2"
+       }
+      ],
+      "tags": [
+       "v2"
+      ]
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "apikey": {
+      "name": "apikey",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb export token<br /><br />Follow these steps to obtain the export token:<ol><li>From your OpenWeb Admin Dashboard, click <strong>Settings</strong>.</li><li>Under <strong>Authentication Tokens</strong>, click <strong>ApiKey</strong>.</li><li>Copy the key.</li></ol>"
+     },
+     "id-v2": {
+      "name": "id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique ID of an export request<br /><br /> This value is returned in the API response to a `POST /v2/export/comments` call."
+     }
+    },
+    "responses": {
+     "GetExportStatus": {
+      "description": "Example response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "x-examples": {
+          "Example 1": {
+           "links": [
+            "...",
+            "...",
+            "..."
+           ],
+           "status": "done",
+           "status_link": "https://api.openweb.com/v4/export/status?id=EXPORT_REQUEST_ID"
+          }
+         },
+         "properties": {
+          "links": {
+           "type": "array",
+           "description": "Secured URLs to an export download, present only when `\"status\": \"done\"`",
+           "items": {
+            "type": "string"
+           }
+          },
+          "status": {
+           "description": "State of the export request",
+           "type": "string",
+           "enum": [
+            "aborted",
+            "done",
+            "failed",
+            "in_progress",
+            "pending"
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_v2-export-comments-list.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Export API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api-exporter.openweb.com"
+    }
+   ],
+   "paths": {
+    "/v2/export/comments/list": {
+     "get": {
+      "summary": "List finished exports",
+      "responses": {
+       "200": {
+        "description": "OK"
+       }
+      },
+      "description": "Lists finished exports",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/apikey"
+       },
+       {
+        "$ref": "#/components/parameters/limit"
+       },
+       {
+        "$ref": "#/components/parameters/offset"
+       }
+      ],
+      "tags": [
+       "v2"
+      ]
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "apikey": {
+      "name": "apikey",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb export token<br /><br />Follow these steps to obtain the export token:<ol><li>From your OpenWeb Admin Dashboard, click <strong>Settings</strong>.</li><li>Under <strong>Authentication Tokens</strong>, click <strong>ApiKey</strong>.</li><li>Copy the key.</li></ol>"
+     },
+     "limit": {
+      "name": "limit",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Limit of records returned"
+     },
+     "offset": {
+      "name": "offset",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Offset for records"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_v2-export-comments-abort.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Export API",
+    "version": "1.0"
+   },
+   "servers": [
+    {
+     "url": "https://api-exporter.openweb.com"
+    }
+   ],
+   "paths": {
+    "/v2/export/comments/abort": {
+     "get": {
+      "summary": "Abort export",
+      "responses": {
+       "202": {
+        "description": "Accepted"
+       },
+       "400": {
+        "description": "Bad Request"
+       }
+      },
+      "description": "Cancels the export",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/id-v2"
+       }
+      ],
+      "tags": [
+       "v2"
+      ]
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "id-v2": {
+      "name": "id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique ID of an export request<br /><br /> This value is returned in the API response to a `POST /v2/export/comments` call."
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ }
+]

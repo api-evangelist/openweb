@@ -1,0 +1,1478 @@
+[
+ {
+  "page": "https://developers.openweb.com/reference/post_sso-v1-user.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Single Sign On API",
+    "version": "1.0",
+    "description": "OpenWeb’s single sign-on (SSO) process allows using your existing identity management solutions with OpenWeb products."
+   },
+   "servers": [
+    {
+     "url": "https://www.spot.im/api"
+    }
+   ],
+   "tags": [
+    {
+     "name": "sso",
+     "description": "SSO-related calls"
+    }
+   ],
+   "paths": {
+    "/sso/v1/user": {
+     "post": {
+      "summary": "Register a new user",
+      "responses": {
+       "200": {
+        "description": "OK"
+       }
+      },
+      "description": "Registers a new user",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/x-spotim-sso-access-token"
+       },
+       {
+        "$ref": "#/components/parameters/primary_key"
+       },
+       {
+        "$ref": "#/components/parameters/spot_id"
+       },
+       {
+        "$ref": "#/components/parameters/user_name"
+       },
+       {
+        "$ref": "#/components/parameters/display_name_nonreq"
+       },
+       {
+        "$ref": "#/components/parameters/email"
+       },
+       {
+        "$ref": "#/components/parameters/email_verified"
+       },
+       {
+        "$ref": "#/components/parameters/image_url"
+       },
+       {
+        "$ref": "#/components/parameters/location"
+       },
+       {
+        "$ref": "#/components/parameters/private_profile"
+       },
+       {
+        "$ref": "#/components/parameters/user_metadata"
+       }
+      ],
+      "requestBody": {
+       "$ref": "#/components/requestBodies/AdditionalUserSettings"
+      },
+      "tags": [
+       "sso"
+      ]
+     }
+    }
+   },
+   "components": {
+    "schemas": {
+     "bio": {
+      "type": "string",
+      "description": "User bio\n\nWhen configuring a user bio, the bio cannot exceed 200 characters.\n\nThis property can be passed with or without the `role` or `settings` object."
+     },
+     "role": {
+      "type": "string",
+      "description": "Permission level of the user\n\n**Possible values**\n- `admin`: Access to all sections of the system\n- `community-moderator`: Ability to moderate comments within a Conversation, but no Admin Panel access\n- `journalist`: Ability to select top comments, but no Admin Panel access\n- `moderator`: Access only to the moderation section\n- `registered`: Regular user with no assigned role (This is the default permission that is set when no role is specified.)\n- `viewer`: View-only access to the moderation section\n\nThis property can be passed with or without the `bio` or `settings` object.",
+      "enum": [
+       "admin",
+       "community-moderator",
+       "journalist",
+       "moderator",
+       "registered",
+       "viewer"
+      ]
+     },
+     "settings": {
+      "type": "object",
+      "description": "Email and in-app notification settings",
+      "properties": {
+       "notifications": {
+        "type": "object",
+        "description": "Notifications",
+        "properties": {
+         "email": {
+          "type": "object",
+          "properties": {
+           "liked_your_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_approved": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_rejected": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "replied_to_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "user_mentioned": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           }
+          }
+         },
+         "in_app": {
+          "type": "object",
+          "properties": {
+           "liked_your_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_approved": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_rejected": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "replied_to_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "user_mentioned": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "parameters": {
+     "primary_key": {
+      "name": "primary_key",
+      "in": "query",
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique user ID generated by a Partner’s backend user management system",
+      "required": true
+     },
+     "spot_id": {
+      "name": "spot_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique OpenWeb identifier"
+     },
+     "user_name": {
+      "name": "user_name",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique personal identifier used to differentiate between different users\n\nA username has the following characteristics:\n- Is **greater than 3 characters**, but **less than 30 characters**\n- Can be comprised of foreign-language characters\n- **Cannot** be comprised of delimiters, such as spaces, tabs, and other ASCII delimiters (`/t`, `/r`, and `/n`)\n- **Cannot** be comprised of special characters, such as `<` and `>`\n- Is preceded by the `@` symbol when displayed\n\nIf a username is **already taken**, OpenWeb appends random letters or numbers to generate a unique version of that username and registers it to the user.\n\nIf a username is **not provided**, OpenWeb creates a username from the `display_name`, appends random letters or numbers to generate a unique version of that username, and registers it to the user.\n\nIf neither a username nor a display name is provided, the handshake will fail.\n"
+     },
+     "display_name_nonreq": {
+      "name": "display_name",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "**Non-unique** personal identifier used prominently throughout the platform\n\nA display name has the following characteristics:\n- Cannot exceed **30 characters**\n- Is comprised of a combination of letters, numbers, special characters, or spaces\n\nWhen not provided, OpenWeb creates a display name from the `user_name`.\n"
+     },
+     "email": {
+      "name": "email",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Email of the user"
+     },
+     "email_verified": {
+      "name": "email_verified",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean"
+      },
+      "description": "Indicates that the email of the user has been verified by the user\n\n**Possible Values**:\n- `false` (default)\n- `true`\n\nOpenWeb only sends email notifications to verified email addresses.\n"
+     },
+     "image_url": {
+      "name": "image_url",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "URL of the profile image of the user\n\nThis image is the avatar used for all comments created by the user. If the `image_url` is not set, OpenWeb selects a random avatar from the avatar scheme for the user.\n\nTo delete a set user image, send an empty string for this parameter.\n"
+     },
+     "location": {
+      "name": "location",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Location of the user"
+     },
+     "private_profile": {
+      "name": "private_profile",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean"
+      },
+      "description": "Indicates whether the user's commenting history and profile can be viewed by others\n\n**Possible Values**:\n- `false` (default)\n- `true`\n"
+     },
+     "user_metadata": {
+      "name": "user_metadata",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Indicates if the user is a subscriber or not and enables the segmentation of data by subscribers and non-subscribers\n\nIf a user's subscriber status changes, you must <a href=\"https://developers.openweb.com/docs/implement-single-sign-on#log-out-a-user\" target=\"_blank\">log out the user</a> and complete a new SSO flow. This ensures that a user's previous cached client state for `user_metadata.is_subscriber` is not used.\n\n**Possible Values** *(values must be Base64-encoded)*:\n\n```json\n{\n  \"is_subscriber\": true\n}\n```\nWhen this value is passed for a user, you can also show a customized subscriber badge next to the user's name in the Conversation. Please contact Support to enable and customize the subscriber badge.\n\n<hr />\n\n```json\n{\n  \"is_subscriber\": false\n}\n```\n"
+     },
+     "x-spotim-sso-access-token": {
+      "name": "x-spotim-sso-access-token",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Secret access token provide by OpenWeb"
+     }
+    },
+    "requestBodies": {
+     "AdditionalUserSettings": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "bio": {
+           "$ref": "#/components/schemas/bio"
+          },
+          "role": {
+           "$ref": "#/components/schemas/role"
+          },
+          "settings": {
+           "$ref": "#/components/schemas/settings"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_sso-v1-user-primary-key.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Single Sign On API",
+    "version": "1.0",
+    "description": "OpenWeb’s single sign-on (SSO) process allows using your existing identity management solutions with OpenWeb products."
+   },
+   "servers": [
+    {
+     "url": "https://www.spot.im/api"
+    }
+   ],
+   "tags": [
+    {
+     "name": "sso",
+     "description": "SSO-related calls"
+    }
+   ],
+   "paths": {
+    "/sso/v1/user/{primary_key}": {
+     "parameters": [
+      {
+       "schema": {
+        "type": "string"
+       },
+       "name": "primary_key",
+       "in": "path",
+       "required": true,
+       "description": "Unique user ID generated by a Partner's backend user management system"
+      }
+     ],
+     "get": {
+      "summary": "Retrieve user details",
+      "tags": [
+       "sso"
+      ],
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/UserDetails"
+       }
+      },
+      "description": "Retrieves user details",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/x-spotim-sso-access-token"
+       }
+      ]
+     }
+    }
+   },
+   "components": {
+    "schemas": {
+     "bio": {
+      "type": "string",
+      "description": "User bio\n\nWhen configuring a user bio, the bio cannot exceed 200 characters.\n\nThis property can be passed with or without the `role` or `settings` object."
+     },
+     "display_name": {
+      "type": "string",
+      "description": "**Non-unique** personal identifier used prominently throughout the platform\n\nA display name has the following characteristics:\n- Cannot exceed **30 characters**\n- Is comprised of a combination of letters, numbers, special characters, or spaces\n\nWhen not provided, OpenWeb creates a display name from the `user_name`.\n"
+     },
+     "email": {
+      "type": "string",
+      "description": "Email of the user"
+     },
+     "email_verified": {
+      "type": "boolean",
+      "description": "Indicates that the email of the user has been verified by the user\n\n**Possible Values**:\n- `false` (default)\n- `true`\n\nOpenWeb only sends email notifications to verified email addresses.\n"
+     },
+     "image_url": {
+      "type": "string",
+      "description": "URL of the profile image of the user\n\nThis image is the avatar used for all comments created by the user. If the `image_url` is not set, OpenWeb selects a random avatar from the avatar scheme for the user.\n\nTo delete a set user image, send an empty string for this parameter.\n"
+     },
+     "is_blocked": {
+      "title": "is_blocked",
+      "type": "string",
+      "description": "Identifies if the user has permission to post comments on the site associated the spot ID\n\n**Possible Values**:\n- `false`: User has permission to post comments\n- `true`: User is on the blocked and restricted from posting comments\n- `null`: User’s access cannot be determined and the request should be attempted again"
+     },
+     "location": {
+      "type": "string",
+      "description": "Location of the user"
+     },
+     "primary_key": {
+      "description": "Unique user ID generated by a Partner’s backend user management system",
+      "type": "string"
+     },
+     "private_profile": {
+      "type": "boolean",
+      "description": "Indicates whether the user's commenting history and profile can be viewed by others\n\n**Possible Values**:\n- `false` (default)\n- `true`\n"
+     },
+     "role": {
+      "type": "string",
+      "description": "Permission level of the user\n\n**Possible values**\n- `admin`: Access to all sections of the system\n- `community-moderator`: Ability to moderate comments within a Conversation, but no Admin Panel access\n- `journalist`: Ability to select top comments, but no Admin Panel access\n- `moderator`: Access only to the moderation section\n- `registered`: Regular user with no assigned role (This is the default permission that is set when no role is specified.)\n- `viewer`: View-only access to the moderation section\n\nThis property can be passed with or without the `bio` or `settings` object.",
+      "enum": [
+       "admin",
+       "community-moderator",
+       "journalist",
+       "moderator",
+       "registered",
+       "viewer"
+      ]
+     },
+     "settings": {
+      "type": "object",
+      "description": "Email and in-app notification settings",
+      "properties": {
+       "notifications": {
+        "type": "object",
+        "description": "Notifications",
+        "properties": {
+         "email": {
+          "type": "object",
+          "properties": {
+           "liked_your_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_approved": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_rejected": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "replied_to_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "user_mentioned": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           }
+          }
+         },
+         "in_app": {
+          "type": "object",
+          "properties": {
+           "liked_your_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_approved": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_rejected": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "replied_to_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "user_mentioned": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "user_name": {
+      "type": "string",
+      "description": "Unique personal identifier used to differentiate between different users\n\nA username has the following characteristics:\n- Is **greater than 3 characters**, but **less than 30 characters**\n- Can be comprised of foreign-language characters\n- **Cannot** be comprised of delimiters, such as spaces, tabs, and other ASCII delimiters (`/t`, `/r`, and `/n`)\n- **Cannot** be comprised of special characters, such as `<` and `>`\n- Is preceded by the `@` symbol when displayed\n\nIf a username is **already taken**, OpenWeb appends random letters or numbers to generate a unique version of that username and registers it to the user.\n\nIf a username is **not provided**, OpenWeb creates a username from the `display_name`, appends random letters or numbers to generate a unique version of that username, and registers it to the user.\n"
+     },
+     "user_metadata": {
+      "title": "user_metadata",
+      "type": "object",
+      "properties": {
+       "is_subscriber": {
+        "type": "boolean",
+        "description": "Indicates if the user is a subscriber or not and enables the segmentation of data by subscribers and non-subscribers"
+       }
+      }
+     }
+    },
+    "parameters": {
+     "x-spotim-sso-access-token": {
+      "name": "x-spotim-sso-access-token",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Secret access token provide by OpenWeb"
+     }
+    },
+    "responses": {
+     "UserDetails": {
+      "description": "",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "success": {
+           "type": "boolean"
+          },
+          "user": {
+           "type": "object",
+           "properties": {
+            "bio": {
+             "$ref": "#/components/schemas/bio"
+            },
+            "display_name": {
+             "$ref": "#/components/schemas/display_name"
+            },
+            "email": {
+             "$ref": "#/components/schemas/email"
+            },
+            "email_verified": {
+             "$ref": "#/components/schemas/email_verified"
+            },
+            "image_url": {
+             "$ref": "#/components/schemas/image_url"
+            },
+            "is_blocked": {
+             "$ref": "#/components/schemas/is_blocked"
+            },
+            "location": {
+             "$ref": "#/components/schemas/location"
+            },
+            "primary_key": {
+             "$ref": "#/components/schemas/primary_key"
+            },
+            "private_profile": {
+             "$ref": "#/components/schemas/private_profile"
+            },
+            "role": {
+             "$ref": "#/components/schemas/role"
+            },
+            "spotim_user_id": {
+             "type": "string"
+            },
+            "user_metadata": {
+             "$ref": "#/components/schemas/user_metadata"
+            },
+            "user_name": {
+             "$ref": "#/components/schemas/user_name"
+            },
+            "settings": {
+             "$ref": "#/components/schemas/settings"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/delete_sso-v1-user-primary-key.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Single Sign On API",
+    "version": "1.0",
+    "description": "OpenWeb’s single sign-on (SSO) process allows using your existing identity management solutions with OpenWeb products."
+   },
+   "servers": [
+    {
+     "url": "https://www.spot.im/api"
+    }
+   ],
+   "tags": [
+    {
+     "name": "sso",
+     "description": "SSO-related calls"
+    }
+   ],
+   "paths": {
+    "/sso/v1/user/{primary_key}": {
+     "parameters": [
+      {
+       "schema": {
+        "type": "string"
+       },
+       "name": "primary_key",
+       "in": "path",
+       "required": true,
+       "description": "Unique user ID generated by a Partner's backend user management system"
+      }
+     ],
+     "delete": {
+      "summary": "Delete user",
+      "tags": [
+       "sso"
+      ],
+      "responses": {
+       "200": {
+        "description": "OK"
+       }
+      },
+      "description": "Deletes the OpenWeb user data of an existing SSO user\n\nWhen requested by a user, you must delete the user’s OpenWeb account to remain GDPR compliant. Once the user has been deleted, comments by the deleted user remain and are linked to a random guest user.",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/x-spotim-sso-access-token"
+       }
+      ]
+     }
+    }
+   },
+   "components": {
+    "parameters": {
+     "x-spotim-sso-access-token": {
+      "name": "x-spotim-sso-access-token",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Secret access token provide by OpenWeb"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_sso-v1-register-user.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Single Sign On API",
+    "version": "1.0",
+    "description": "OpenWeb’s single sign-on (SSO) process allows using your existing identity management solutions with OpenWeb products."
+   },
+   "servers": [
+    {
+     "url": "https://www.spot.im/api"
+    }
+   ],
+   "tags": [
+    {
+     "name": "sso",
+     "description": "SSO-related calls"
+    }
+   ],
+   "paths": {
+    "/sso/v1/register-user": {
+     "get": {
+      "summary": "Configure additional user settings",
+      "tags": [
+       "sso"
+      ],
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/code_b"
+       }
+      },
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/access_token"
+       },
+       {
+        "$ref": "#/components/parameters/code_a"
+       },
+       {
+        "$ref": "#/components/parameters/display_name"
+       },
+       {
+        "$ref": "#/components/parameters/primary_key"
+       },
+       {
+        "$ref": "#/components/parameters/user_name"
+       },
+       {
+        "$ref": "#/components/parameters/Content-Type"
+       },
+       {
+        "$ref": "#/components/parameters/email"
+       },
+       {
+        "$ref": "#/components/parameters/email_verified"
+       },
+       {
+        "$ref": "#/components/parameters/image_url"
+       },
+       {
+        "$ref": "#/components/parameters/location"
+       },
+       {
+        "$ref": "#/components/parameters/private_profile"
+       },
+       {
+        "$ref": "#/components/parameters/user_metadata"
+       }
+      ],
+      "requestBody": {
+       "$ref": "#/components/requestBodies/AdditionalUserSettings"
+      },
+      "description": "Adds more information to the user, such as bio, notification settings, and email"
+     },
+     "parameters": []
+    }
+   },
+   "components": {
+    "schemas": {
+     "bio": {
+      "type": "string",
+      "description": "User bio\n\nWhen configuring a user bio, the bio cannot exceed 200 characters.\n\nThis property can be passed with or without the `role` or `settings` object."
+     },
+     "role": {
+      "type": "string",
+      "description": "Permission level of the user\n\n**Possible values**\n- `admin`: Access to all sections of the system\n- `community-moderator`: Ability to moderate comments within a Conversation, but no Admin Panel access\n- `journalist`: Ability to select top comments, but no Admin Panel access\n- `moderator`: Access only to the moderation section\n- `registered`: Regular user with no assigned role (This is the default permission that is set when no role is specified.)\n- `viewer`: View-only access to the moderation section\n\nThis property can be passed with or without the `bio` or `settings` object.",
+      "enum": [
+       "admin",
+       "community-moderator",
+       "journalist",
+       "moderator",
+       "registered",
+       "viewer"
+      ]
+     },
+     "settings": {
+      "type": "object",
+      "description": "Email and in-app notification settings",
+      "properties": {
+       "notifications": {
+        "type": "object",
+        "description": "Notifications",
+        "properties": {
+         "email": {
+          "type": "object",
+          "properties": {
+           "liked_your_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_approved": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_rejected": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "replied_to_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "user_mentioned": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           }
+          }
+         },
+         "in_app": {
+          "type": "object",
+          "properties": {
+           "liked_your_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_approved": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_rejected": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "replied_to_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "user_mentioned": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "parameters": {
+     "access_token": {
+      "name": "access_token",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Secret access token provide by OpenWeb"
+     },
+     "code_a": {
+      "name": "code_a",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Session ID returned after initiating an SSO session"
+     },
+     "display_name": {
+      "name": "display_name",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "**Non-unique** personal identifier used prominently throughout the platform\n\nA display name has the following characteristics:\n- Cannot exceed **30 characters**\n- Is comprised of a combination of letters, numbers, special characters, or spaces\n\nWhen not provided, OpenWeb creates a display name from the `user_name`.\n\nIf neither a username nor a display name is provided, the handshake will fail.\n"
+     },
+     "primary_key": {
+      "name": "primary_key",
+      "in": "query",
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique user ID generated by a Partner’s backend user management system",
+      "required": true
+     },
+     "user_name": {
+      "name": "user_name",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique personal identifier used to differentiate between different users\n\nA username has the following characteristics:\n- Is **greater than 3 characters**, but **less than 30 characters**\n- Can be comprised of foreign-language characters\n- **Cannot** be comprised of delimiters, such as spaces, tabs, and other ASCII delimiters (`/t`, `/r`, and `/n`)\n- **Cannot** be comprised of special characters, such as `<` and `>`\n- Is preceded by the `@` symbol when displayed\n\nIf a username is **already taken**, OpenWeb appends random letters or numbers to generate a unique version of that username and registers it to the user.\n\nIf a username is **not provided**, OpenWeb creates a username from the `display_name`, appends random letters or numbers to generate a unique version of that username, and registers it to the user.\n\nIf neither a username nor a display name is provided, the handshake will fail.\n"
+     },
+     "Content-Type": {
+      "name": "Content-Type",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "enum": [
+        "application/json"
+       ]
+      },
+      "description": "Enables sending a JSON body with the request"
+     },
+     "email": {
+      "name": "email",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Email of the user"
+     },
+     "email_verified": {
+      "name": "email_verified",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean"
+      },
+      "description": "Indicates that the email of the user has been verified by the user\n\n**Possible Values**:\n- `false` (default)\n- `true`\n\nOpenWeb only sends email notifications to verified email addresses.\n"
+     },
+     "image_url": {
+      "name": "image_url",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "URL of the profile image of the user\n\nThis image is the avatar used for all comments created by the user. If the `image_url` is not set, OpenWeb selects a random avatar from the avatar scheme for the user.\n\nTo delete a set user image, send an empty string for this parameter.\n"
+     },
+     "location": {
+      "name": "location",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Location of the user"
+     },
+     "private_profile": {
+      "name": "private_profile",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean"
+      },
+      "description": "Indicates whether the user's commenting history and profile can be viewed by others\n\n**Possible Values**:\n- `false` (default)\n- `true`\n"
+     },
+     "user_metadata": {
+      "name": "user_metadata",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Indicates if the user is a subscriber or not and enables the segmentation of data by subscribers and non-subscribers\n\nIf a user's subscriber status changes, you must <a href=\"https://developers.openweb.com/docs/implement-single-sign-on#log-out-a-user\" target=\"_blank\">log out the user</a> and complete a new SSO flow. This ensures that a user's previous cached client state for `user_metadata.is_subscriber` is not used.\n\n**Possible Values** *(values must be Base64-encoded)*:\n\n```json\n{\n  \"is_subscriber\": true\n}\n```\nWhen this value is passed for a user, you can also show a customized subscriber badge next to the user's name in the Conversation. Please contact Support to enable and customize the subscriber badge.\n\n<hr />\n\n```json\n{\n  \"is_subscriber\": false\n}\n```\n"
+     }
+    },
+    "responses": {
+     "code_b": {
+      "description": "",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "string",
+         "description": "Success response returned after OpenWeb logs in the user"
+        }
+       }
+      }
+     }
+    },
+    "requestBodies": {
+     "AdditionalUserSettings": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "bio": {
+           "$ref": "#/components/schemas/bio"
+          },
+          "role": {
+           "$ref": "#/components/schemas/role"
+          },
+          "settings": {
+           "$ref": "#/components/schemas/settings"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developers.openweb.com/reference/get_sso-v1-update-user.md",
+  "definition": {
+   "openapi": "3.0.0",
+   "info": {
+    "title": "Single Sign On API",
+    "version": "1.0",
+    "description": "OpenWeb’s single sign-on (SSO) process allows using your existing identity management solutions with OpenWeb products."
+   },
+   "servers": [
+    {
+     "url": "https://www.spot.im/api"
+    }
+   ],
+   "tags": [
+    {
+     "name": "sso",
+     "description": "SSO-related calls"
+    }
+   ],
+   "paths": {
+    "/sso/v1/update-user": {
+     "get": {
+      "summary": "Update user details",
+      "tags": [
+       "sso"
+      ],
+      "responses": {
+       "200": {
+        "$ref": "#/components/responses/UserDetails"
+       }
+      },
+      "description": "Updates the OpenWeb user data of an existing SSO user",
+      "parameters": [
+       {
+        "$ref": "#/components/parameters/x-spotim-sso-access-token"
+       },
+       {
+        "$ref": "#/components/parameters/primary_key"
+       },
+       {
+        "$ref": "#/components/parameters/user_name"
+       },
+       {
+        "$ref": "#/components/parameters/display_name_nonreq"
+       },
+       {
+        "$ref": "#/components/parameters/email"
+       },
+       {
+        "$ref": "#/components/parameters/email_verified"
+       },
+       {
+        "$ref": "#/components/parameters/image_url"
+       },
+       {
+        "$ref": "#/components/parameters/location"
+       },
+       {
+        "$ref": "#/components/parameters/private_profile"
+       },
+       {
+        "$ref": "#/components/parameters/user_metadata"
+       }
+      ],
+      "requestBody": {
+       "$ref": "#/components/requestBodies/AdditionalUserSettings"
+      }
+     }
+    }
+   },
+   "components": {
+    "schemas": {
+     "bio": {
+      "type": "string",
+      "description": "User bio\n\nWhen configuring a user bio, the bio cannot exceed 200 characters.\n\nThis property can be passed with or without the `role` or `settings` object."
+     },
+     "display_name": {
+      "type": "string",
+      "description": "**Non-unique** personal identifier used prominently throughout the platform\n\nA display name has the following characteristics:\n- Cannot exceed **30 characters**\n- Is comprised of a combination of letters, numbers, special characters, or spaces\n\nWhen not provided, OpenWeb creates a display name from the `user_name`.\n"
+     },
+     "email": {
+      "type": "string",
+      "description": "Email of the user"
+     },
+     "email_verified": {
+      "type": "boolean",
+      "description": "Indicates that the email of the user has been verified by the user\n\n**Possible Values**:\n- `false` (default)\n- `true`\n\nOpenWeb only sends email notifications to verified email addresses.\n"
+     },
+     "image_url": {
+      "type": "string",
+      "description": "URL of the profile image of the user\n\nThis image is the avatar used for all comments created by the user. If the `image_url` is not set, OpenWeb selects a random avatar from the avatar scheme for the user.\n\nTo delete a set user image, send an empty string for this parameter.\n"
+     },
+     "is_blocked": {
+      "title": "is_blocked",
+      "type": "string",
+      "description": "Identifies if the user has permission to post comments on the site associated the spot ID\n\n**Possible Values**:\n- `false`: User has permission to post comments\n- `true`: User is on the blocked and restricted from posting comments\n- `null`: User’s access cannot be determined and the request should be attempted again"
+     },
+     "location": {
+      "type": "string",
+      "description": "Location of the user"
+     },
+     "primary_key": {
+      "description": "Unique user ID generated by a Partner’s backend user management system",
+      "type": "string"
+     },
+     "private_profile": {
+      "type": "boolean",
+      "description": "Indicates whether the user's commenting history and profile can be viewed by others\n\n**Possible Values**:\n- `false` (default)\n- `true`\n"
+     },
+     "role": {
+      "type": "string",
+      "description": "Permission level of the user\n\n**Possible values**\n- `admin`: Access to all sections of the system\n- `community-moderator`: Ability to moderate comments within a Conversation, but no Admin Panel access\n- `journalist`: Ability to select top comments, but no Admin Panel access\n- `moderator`: Access only to the moderation section\n- `registered`: Regular user with no assigned role (This is the default permission that is set when no role is specified.)\n- `viewer`: View-only access to the moderation section\n\nThis property can be passed with or without the `bio` or `settings` object.",
+      "enum": [
+       "admin",
+       "community-moderator",
+       "journalist",
+       "moderator",
+       "registered",
+       "viewer"
+      ]
+     },
+     "settings": {
+      "type": "object",
+      "description": "Email and in-app notification settings",
+      "properties": {
+       "notifications": {
+        "type": "object",
+        "description": "Notifications",
+        "properties": {
+         "email": {
+          "type": "object",
+          "properties": {
+           "liked_your_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_approved": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_rejected": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "replied_to_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "user_mentioned": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           }
+          }
+         },
+         "in_app": {
+          "type": "object",
+          "properties": {
+           "liked_your_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_approved": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "message_rejected": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "replied_to_message": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           },
+           "user_mentioned": {
+            "type": "string",
+            "description": "When notifications are sent\n\n**Possible Values**:\n- `immediately`: Notifications are sent instantly\n- `never`: Notifications are not sent",
+            "enum": [
+             "immediately",
+             "never"
+            ]
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "user_name": {
+      "type": "string",
+      "description": "Unique personal identifier used to differentiate between different users\n\nA username has the following characteristics:\n- Is **greater than 3 characters**, but **less than 30 characters**\n- Can be comprised of foreign-language characters\n- **Cannot** be comprised of delimiters, such as spaces, tabs, and other ASCII delimiters (`/t`, `/r`, and `/n`)\n- **Cannot** be comprised of special characters, such as `<` and `>`\n- Is preceded by the `@` symbol when displayed\n\nIf a username is **already taken**, OpenWeb appends random letters or numbers to generate a unique version of that username and registers it to the user.\n\nIf a username is **not provided**, OpenWeb creates a username from the `display_name`, appends random letters or numbers to generate a unique version of that username, and registers it to the user.\n"
+     },
+     "user_metadata": {
+      "title": "user_metadata",
+      "type": "object",
+      "properties": {
+       "is_subscriber": {
+        "type": "boolean",
+        "description": "Indicates if the user is a subscriber or not and enables the segmentation of data by subscribers and non-subscribers"
+       }
+      }
+     }
+    },
+    "parameters": {
+     "primary_key": {
+      "name": "primary_key",
+      "in": "query",
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique user ID generated by a Partner’s backend user management system",
+      "required": true
+     },
+     "user_name": {
+      "name": "user_name",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Unique personal identifier used to differentiate between different users\n\nA username has the following characteristics:\n- Is **greater than 3 characters**, but **less than 30 characters**\n- Can be comprised of foreign-language characters\n- **Cannot** be comprised of delimiters, such as spaces, tabs, and other ASCII delimiters (`/t`, `/r`, and `/n`)\n- **Cannot** be comprised of special characters, such as `<` and `>`\n- Is preceded by the `@` symbol when displayed\n\nIf a username is **already taken**, OpenWeb appends random letters or numbers to generate a unique version of that username and registers it to the user.\n\nIf a username is **not provided**, OpenWeb creates a username from the `display_name`, appends random letters or numbers to generate a unique version of that username, and registers it to the user.\n\nIf neither a username nor a display name is provided, the handshake will fail.\n"
+     },
+     "display_name_nonreq": {
+      "name": "display_name",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "**Non-unique** personal identifier used prominently throughout the platform\n\nA display name has the following characteristics:\n- Cannot exceed **30 characters**\n- Is comprised of a combination of letters, numbers, special characters, or spaces\n\nWhen not provided, OpenWeb creates a display name from the `user_name`.\n"
+     },
+     "email": {
+      "name": "email",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Email of the user"
+     },
+     "email_verified": {
+      "name": "email_verified",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean"
+      },
+      "description": "Indicates that the email of the user has been verified by the user\n\n**Possible Values**:\n- `false` (default)\n- `true`\n\nOpenWeb only sends email notifications to verified email addresses.\n"
+     },
+     "image_url": {
+      "name": "image_url",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "URL of the profile image of the user\n\nThis image is the avatar used for all comments created by the user. If the `image_url` is not set, OpenWeb selects a random avatar from the avatar scheme for the user.\n\nTo delete a set user image, send an empty string for this parameter.\n"
+     },
+     "location": {
+      "name": "location",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Location of the user"
+     },
+     "private_profile": {
+      "name": "private_profile",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean"
+      },
+      "description": "Indicates whether the user's commenting history and profile can be viewed by others\n\n**Possible Values**:\n- `false` (default)\n- `true`\n"
+     },
+     "user_metadata": {
+      "name": "user_metadata",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Indicates if the user is a subscriber or not and enables the segmentation of data by subscribers and non-subscribers\n\nIf a user's subscriber status changes, you must <a href=\"https://developers.openweb.com/docs/implement-single-sign-on#log-out-a-user\" target=\"_blank\">log out the user</a> and complete a new SSO flow. This ensures that a user's previous cached client state for `user_metadata.is_subscriber` is not used.\n\n**Possible Values** *(values must be Base64-encoded)*:\n\n```json\n{\n  \"is_subscriber\": true\n}\n```\nWhen this value is passed for a user, you can also show a customized subscriber badge next to the user's name in the Conversation. Please contact Support to enable and customize the subscriber badge.\n\n<hr />\n\n```json\n{\n  \"is_subscriber\": false\n}\n```\n"
+     },
+     "x-spotim-sso-access-token": {
+      "name": "x-spotim-sso-access-token",
+      "in": "header",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Secret access token provide by OpenWeb"
+     }
+    },
+    "responses": {
+     "UserDetails": {
+      "description": "",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "success": {
+           "type": "boolean"
+          },
+          "user": {
+           "type": "object",
+           "properties": {
+            "bio": {
+             "$ref": "#/components/schemas/bio"
+            },
+            "display_name": {
+             "$ref": "#/components/schemas/display_name"
+            },
+            "email": {
+             "$ref": "#/components/schemas/email"
+            },
+            "email_verified": {
+             "$ref": "#/components/schemas/email_verified"
+            },
+            "image_url": {
+             "$ref": "#/components/schemas/image_url"
+            },
+            "is_blocked": {
+             "$ref": "#/components/schemas/is_blocked"
+            },
+            "location": {
+             "$ref": "#/components/schemas/location"
+            },
+            "primary_key": {
+             "$ref": "#/components/schemas/primary_key"
+            },
+            "private_profile": {
+             "$ref": "#/components/schemas/private_profile"
+            },
+            "role": {
+             "$ref": "#/components/schemas/role"
+            },
+            "spotim_user_id": {
+             "type": "string"
+            },
+            "user_metadata": {
+             "$ref": "#/components/schemas/user_metadata"
+            },
+            "user_name": {
+             "$ref": "#/components/schemas/user_name"
+            },
+            "settings": {
+             "$ref": "#/components/schemas/settings"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBodies": {
+     "AdditionalUserSettings": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "bio": {
+           "$ref": "#/components/schemas/bio"
+          },
+          "role": {
+           "$ref": "#/components/schemas/role"
+          },
+          "settings": {
+           "$ref": "#/components/schemas/settings"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ }
+]

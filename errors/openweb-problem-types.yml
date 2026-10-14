@@ -1,0 +1,31 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/openweb-export-api-openapi.yml
+- openapi/openweb-moderation-policy-openapi.yml
+- openapi/openweb-publisher-authentication-api-openapi.yml
+- openapi/openweb-seo-service-openapi.yml
+- openapi/openweb-single-sign-on-api-openapi.yml
+- openapi/openweb-top-comments-api-openapi.yml
+- openapi/openweb-trending-articles-api-openapi.yml
+format: custom
+envelope:
+  media_type: null
+  schema: null
+coverage:
+  operations: 24
+  statuses_declared: 2
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad Request
+  operations: 1
+  media_types: []
+  schema: null
+- status: 409
+  title: Conflict
+  description: Same request already in progress
+  operations: 1
+  media_types: []
+  schema: null
