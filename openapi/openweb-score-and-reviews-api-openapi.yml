@@ -1,0 +1,78 @@
+openapi: 3.2.0
+info:
+  title: SEO Service score and reviews API
+  version: '1.0'
+  description: SEO related to scores and reviews
+servers:
+- url: https://seo.spot.im/v2
+tags:
+- name: score and reviews
+  description: SEO related to scores and reviews
+paths:
+  /stars-and-reviews/{spot_id}/{post_id}:
+    parameters:
+    - $ref: '#/components/parameters/spot_id'
+    - $ref: '#/components/parameters/post_id'
+    post:
+      summary: Create score and reviews SEO markup
+      operationId: post-reviews
+      responses:
+        '200':
+          description: OK
+      description: Returns aggregate score and the individual reviews
+      parameters:
+      - $ref: '#/components/parameters/json'
+      tags:
+      - score and reviews
+components:
+  parameters:
+    spot_id:
+      name: spot_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique OpenWeb identifier
+    json:
+      name: json
+      in: query
+      required: false
+      schema:
+        type: boolean
+        example: true
+      description: Formats response into a JSON structure
+    post_id:
+      name: post_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 'Unique article identifier that is specific to the article page
+
+
+        The ideal post ID has the following characteristics:
+
+        - Aligns with the URL slug (`an-article-title`) or article ID (`14325`)
+
+        - Is **less than 50 characters**, ideally 15 characters
+
+        - Uses a combination of letters, numbers, dashes (-), or hyphens (_)
+
+        - Except for the regex `[^\w\s\-\:\.\$\~]`, does not include special characters
+
+        '
+x-provenance:
+  method: searched
+  source: https://developers.openweb.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developers.openweb.com/reference/post-article.md
+  - https://developers.openweb.com/reference/post-comment.md
+  - https://developers.openweb.com/reference/post-liveblog.md
+  - https://developers.openweb.com/reference/post-reviews.md
+  merge:
+    pages: 4
+    deduped: 8
+    conflicts_kept_first: 0

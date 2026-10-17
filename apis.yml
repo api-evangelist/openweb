@@ -173,9 +173,10 @@ common:
 
 apis:
 - name: OpenWeb Publisher API
-  description: 'JWT-authenticated REST API for publishers on the OpenWeb platform: request an API token, export comments/users/ranks (v2 and v4),
-    retrieve top comments and trending articles, manage SSO users (register, retrieve, update, delete), generate SEO markup, and read or set article
-    moderation policy.'
+  description: >-
+    JWT-authenticated REST API for publishers on the OpenWeb platform: request an API token, export comments/users/ranks
+    (v2 and v4), retrieve top comments and trending articles, manage SSO users (register, retrieve, update,
+    delete), generate SEO markup, and read or set article moderation policy.
   humanURL: https://developers.openweb.com/
   baseURL: https://api.openweb.com
   tags:
@@ -204,46 +205,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/openweb-export-api-openapi.yml
-- aid: openweb:openweb-moderation-policy
-  name: OpenWeb moderation policy API
-  description: Moderation Policy
-  humanURL: https://developers.openweb.com/
-  baseURL: https://api.openweb.com
-  tags:
-  - moderation policy
-  properties:
-  - type: OpenAPI
-    url: openapi/openweb-moderation-policy-openapi.yml
-- aid: openweb:openweb-publisher-authentication-api
-  name: OpenWeb Token API
-  description: Authorization token
-  humanURL: https://developers.openweb.com/
-  baseURL: https://api.openweb.com
-  tags:
-  - token
-  properties:
-  - type: OpenAPI
-    url: openapi/openweb-publisher-authentication-api-openapi.yml
-- aid: openweb:openweb-seo-service
-  name: OpenWeb Article API
-  description: SEO related to an article
-  humanURL: https://developers.openweb.com/
-  baseURL: https://api.openweb.com
-  tags:
-  - article
-  properties:
-  - type: OpenAPI
-    url: openapi/openweb-seo-service-openapi.yml
-- aid: openweb:openweb-single-sign-on-api
-  name: OpenWeb SSO API
-  description: SSO-related calls
-  humanURL: https://developers.openweb.com/
-  baseURL: https://api.openweb.com
-  tags:
-  - sso
-  properties:
-  - type: OpenAPI
-    url: openapi/openweb-single-sign-on-api-openapi.yml
 - aid: openweb:openweb-top-comments-api
   name: OpenWeb top comments API
   description: Top Comments
@@ -264,7 +225,76 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/openweb-trending-articles-api-openapi.yml
-
+- aid: openweb:openweb-article-api
+  name: OpenWeb Article API
+  description: SEO related to an article
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - article
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-article-api-openapi.yml
+- aid: openweb:openweb-comment-api
+  name: OpenWeb Comment API
+  description: SEO related to a comment
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - comment
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-comment-api-openapi.yml
+- aid: openweb:openweb-live-blog-api
+  name: OpenWeb live blog API
+  description: SEO related to a live blog
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - live blog
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-live-blog-api-openapi.yml
+- aid: openweb:openweb-moderation-policy-api
+  name: OpenWeb moderation policy API
+  description: Moderation Policy
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - moderation policy
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-moderation-policy-api-openapi.yml
+- aid: openweb:openweb-score-and-reviews-api
+  name: OpenWeb score and reviews API
+  description: SEO related to scores and reviews
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - score and reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-score-and-reviews-api-openapi.yml
+- aid: openweb:openweb-sso-api
+  name: OpenWeb SSO API
+  description: SSO-related calls
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - sso
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-sso-api-openapi.yml
+- aid: openweb:openweb-token-api
+  name: OpenWeb Token API
+  description: Authorization token
+  humanURL: https://developers.openweb.com/
+  baseURL: https://api.openweb.com
+  tags:
+  - token
+  properties:
+  - type: OpenAPI
+    url: openapi/openweb-token-api-openapi.yml
 x-readme-harvest:
   date: '2026-10-14'
   ops: 24

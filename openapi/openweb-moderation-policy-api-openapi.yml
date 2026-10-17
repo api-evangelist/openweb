@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Moderation Policy
+  title: moderation policy API
   version: '1.0'
   description: 'OpenWeb''s Moderation API enables you to manage moderation policies:
 
@@ -10,8 +10,14 @@ info:
     - Create a new moderation policy for an article'
 servers:
 - url: https://open-api.spot.im
+tags:
+- name: moderation policy
+  description: Moderation Policy
 paths:
   /conversation-policy/spot/{spot_id}/post/{post_id}:
+    parameters:
+    - $ref: '#/components/parameters/post_id'
+    - $ref: '#/components/parameters/spot_id'
     get:
       summary: Get moderation policy by article ID
       operationId: get-conversation-policy-spot-spot_id-post-post_id
@@ -23,9 +29,6 @@ paths:
       description: Retrieves the moderation policy for a specific article
       tags:
       - moderation policy
-    parameters:
-    - $ref: '#/components/parameters/post_id'
-    - $ref: '#/components/parameters/spot_id'
   /conversation-policy/spot/{spot_id}/post/{post_id}/{policy}:
     parameters:
     - $ref: '#/components/parameters/spot_id'
@@ -51,32 +54,6 @@ components:
       schema:
         type: string
       description: Unique OpenWeb identifier
-    post_id:
-      name: post_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: 'Unique article identifier that is specific to the article page
-
-
-        This value is defined when the <a href="https://developers.openweb.com/docs/conversation" target="_blank">Conversation</a> is embedded on a page.
-
-        '
-    moderation_token:
-      name: token
-      in: query
-      required: true
-      schema:
-        type: string
-      description: 'Unique OpenWeb export token
-
-
-        1. From your OpenWeb Admin Dashboard, click **Settings > General**.
-
-        2. Under **Authentication Tokens**, copy the **Moderation** token.
-
-        '
     policy:
       name: policy
       in: path
@@ -101,6 +78,32 @@ components:
         - `publish_and_moderate`: Requires that all comments (even auto-approved comments) be manually reviewed
 
         - `require_approval`: Requires that all comments be pre-moderated and manually reviewed
+
+        '
+    moderation_token:
+      name: token
+      in: query
+      required: true
+      schema:
+        type: string
+      description: 'Unique OpenWeb export token
+
+
+        1. From your OpenWeb Admin Dashboard, click **Settings > General**.
+
+        2. Under **Authentication Tokens**, copy the **Moderation** token.
+
+        '
+    post_id:
+      name: post_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: 'Unique article identifier that is specific to the article page
+
+
+        This value is defined when the <a href="https://developers.openweb.com/docs/conversation" target="_blank">Conversation</a> is embedded on a page.
 
         '
   responses:
@@ -128,9 +131,6 @@ components:
                   - `publish_and_moderate`: Requires that all comments (even auto-approved comments) be manually reviewed
 
                   - `require_approval`: Requires that all comments be pre-moderated and manually reviewed'
-tags:
-- name: moderation policy
-  description: Moderation Policy
 x-provenance:
   method: searched
   source: https://developers.openweb.com/reference

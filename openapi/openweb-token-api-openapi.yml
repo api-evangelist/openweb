@@ -1,11 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Publisher Authentication API
+  title: Publisher Authentication Token API
   version: '1.0'
+  description: Authorization token
 servers:
 - url: https://api.openweb.com
+tags:
+- name: Token
+  description: Authorization token
 paths:
   /v1/publisher/auth:
+    parameters: []
     post:
       summary: Request an OpenWeb API token
       responses:
@@ -53,11 +58,9 @@ paths:
                     3. Copy the **Export v4 API key** value.'
       description: Generates a JWT token to be used for OpenWeb API
       tags:
-      - token
-    parameters: []
-tags:
-- name: token
-  description: Authorization token
+      - Token
+      operationId: postV1PublisherAuth
+      x-operation-id-source: derived
 x-provenance:
   method: searched
   source: https://developers.openweb.com/reference

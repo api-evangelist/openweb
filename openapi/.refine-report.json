@@ -1,0 +1,59 @@
+{
+  "provider": "openweb",
+  "sources": [
+    "openweb-moderation-policy-openapi.yml",
+    "openweb-seo-service-openapi.yml",
+    "openweb-export-api-openapi.yml",
+    "openweb-publisher-authentication-api-openapi.yml",
+    "openweb-single-sign-on-api-openapi.yml",
+    "openweb-top-comments-api-openapi.yml",
+    "openweb-trending-articles-api-openapi.yml"
+  ],
+  "outputs": [
+    "openweb-moderation-policy-api-openapi.yml",
+    "openweb-article-api-openapi.yml",
+    "openweb-comment-api-openapi.yml",
+    "openweb-live-blog-api-openapi.yml",
+    "openweb-score-and-reviews-api-openapi.yml",
+    "openweb-export-api-openapi.yml",
+    "openweb-token-api-openapi.yml",
+    "openweb-sso-api-openapi.yml",
+    "openweb-top-comments-api-openapi.yml",
+    "openweb-trending-articles-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation",
+    "archived openapi/openweb-moderation-policy-openapi.yml",
+    "archived openapi/openweb-seo-service-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [
+    "openweb-export-api-openapi.yml: previously refined output kept for 8 operation(s) no archived document covers (e.g. /v2/export/comments post, /v2/export/comments/abort get, /v2/export/comments/list get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "openweb-publisher-authentication-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /v1/publisher/auth post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "openweb-single-sign-on-api-openapi.yml: previously refined output kept for 5 operation(s) no archived document covers (e.g. /sso/v1/register-user get, /sso/v1/update-user get, /sso/v1/user post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "openweb-top-comments-api-openapi.yml: previously refined output kept for 3 operation(s) no archived document covers (e.g. /top-comments-conversation get, /top-comments-spot get, /top-comments-user get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "openweb-trending-articles-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /trending-articles get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openweb-moderation-policy-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "openweb-seo-service-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "openweb-export-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "openweb-export-api-openapi.yml: tagged paths POST /v2/export/comments -> Export",
+    "openweb-export-api-openapi.yml: tagged paths GET /v2/export/comments/abort -> Export",
+    "openweb-export-api-openapi.yml: tagged paths GET /v2/export/comments/list -> Export",
+    "openweb-export-api-openapi.yml: tagged paths GET /v2/export/comments/status -> Export",
+    "openweb-export-api-openapi.yml: tagged paths POST /v4/export -> Export",
+    "openweb-export-api-openapi.yml: tagged paths GET /v4/export/abort -> Export",
+    "openweb-export-api-openapi.yml: tagged paths GET /v4/export/list -> Export",
+    "openweb-export-api-openapi.yml: tagged paths GET /v4/export/status -> Export",
+    "openweb-export-api-openapi.yml: declared missing tag: Export",
+    "openweb-publisher-authentication-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "openweb-single-sign-on-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "openweb-top-comments-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "openweb-trending-articles-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: openweb-publisher-authentication-api-openapi.yml, openweb-single-sign-on-api-openapi.yml",
+    "apis.yml register: written (+7 apis, 11 total)"
+  ],
+  "skipped": []
+}
