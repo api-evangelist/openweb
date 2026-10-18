@@ -231,6 +231,8 @@ apis:
   humanURL: https://developers.openweb.com/
   baseURL: https://api.openweb.com
   tags:
+  - Article
+  tags_raw:
   - article
   properties:
   - type: OpenAPI
@@ -241,6 +243,8 @@ apis:
   humanURL: https://developers.openweb.com/
   baseURL: https://api.openweb.com
   tags:
+  - Comment
+  tags_raw:
   - comment
   properties:
   - type: OpenAPI
@@ -251,6 +255,8 @@ apis:
   humanURL: https://developers.openweb.com/
   baseURL: https://api.openweb.com
   tags:
+  - Live Blog
+  tags_raw:
   - live blog
   properties:
   - type: OpenAPI
@@ -281,6 +287,8 @@ apis:
   humanURL: https://developers.openweb.com/
   baseURL: https://api.openweb.com
   tags:
+  - SSO
+  tags_raw:
   - sso
   properties:
   - type: OpenAPI
@@ -291,6 +299,8 @@ apis:
   humanURL: https://developers.openweb.com/
   baseURL: https://api.openweb.com
   tags:
+  - Tokens
+  tags_raw:
   - token
   properties:
   - type: OpenAPI
