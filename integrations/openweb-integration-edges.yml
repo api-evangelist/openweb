@@ -6,9 +6,16 @@ source:
 - https://composio.dev/toolkits/openweb
 - https://monid.ai/tools/openweb
 checked:
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/openweb
+- https://crates.io/api/v1
 - https://monid.ai/tools/openweb
 - https://n8n.io/integrations/openweb/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://vendor-list.consensu.org/v3/vendor-list.json
 - https://zapier.com/apps/openweb/integrations
 summary: null
@@ -45,4 +52,34 @@ edges:
     detected: '2026-10-14'
   detected_by: sweep-adtech.py
   detected: '2026-10-14'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@open-web/react-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@open-web/react-sdk'
+      version: 1.4.2
+      released: '2026-02-03'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@open-web/react-sdk
+      repo_leg: domain:openweb.com
+      publisher_leg: email:openweb.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 templates: []
