@@ -64,6 +64,138 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-OpenWeb is a company surfaced as a portfolio company of insight-partners and added to the API Evangelist network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.
+OpenWeb (formerly Spot.IM) is a community and audience-engagement platform for publishers, delivering OpenWebOS — a unified, end-to-end suite for building community, harnessing first-party data, and driving sustainable revenue. Its developer platform exposes a JWT-authenticated Publisher API (comment export, top comments, trending articles, SSO user management, moderation policy, and SEO markup services) at api.openweb.com, a notification webhook surface, and web, Android, iOS, and React Native SDKs for embedding Conversation, Reactions, Community Spotlight, Live Blog, and Standalone Ad experiences. Backed by Insight Partners.
 
-Backed by: insight-partners — https://www.openweb.com/
+**Areas:** Company · Consumer · Community · Comments · Audience Engagement · Publishing · Media · Moderation · Identity · SSO · Webhook
+
+## OpenWeb on APIs.io
+
+Everything profiled for OpenWeb is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/openweb/](https://apis.io/providers/openweb/)** — or go straight to one of the APIs or properties below.
+
+### APIs (11)
+
+- [OpenWeb Publisher API](https://apis.io/apis/openweb/openweb-publisher-api/) — JWT-authenticated REST API for publishers on the OpenWeb platform: request an API token, export comments/users/ranks (v2 and v4), retrieve top comments and…
+- [OpenWeb Export API](https://apis.io/apis/openweb/openweb-export-api/) — The Export API from OpenWeb — 8 operation(s) for export.
+- [OpenWeb top comments API](https://apis.io/apis/openweb/openweb-top-comments-api/) — Top Comments
+- [OpenWeb trending articles API](https://apis.io/apis/openweb/openweb-trending-articles-api/) — Trending Articles
+- [OpenWeb Article API](https://apis.io/apis/openweb/openweb-article-api/) — SEO related to an article
+- [OpenWeb Comment API](https://apis.io/apis/openweb/openweb-comment-api/) — SEO related to a comment
+- [OpenWeb live blog API](https://apis.io/apis/openweb/openweb-live-blog-api/) — SEO related to a live blog
+- [OpenWeb moderation policy API](https://apis.io/apis/openweb/openweb-moderation-policy-api/) — Moderation Policy
+- [OpenWeb score and reviews API](https://apis.io/apis/openweb/openweb-score-and-reviews-api/) — SEO related to scores and reviews
+- [OpenWeb SSO API](https://apis.io/apis/openweb/openweb-sso-api/) — SSO-related calls
+- [OpenWeb Token API](https://apis.io/apis/openweb/openweb-token-api/) — Authorization token
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Openweb Notifications Webhooks](https://apis.io/asyncapis/openweb/openweb-notifications-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [openweb](https://apis.io/servers/openweb/openweb/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Openweb Agentic Access](https://apis.io/agentic-access/openweb/openweb-agentic-access/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Openweb Context](https://apis.io/jsonld/openweb/openweb-context/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [OpenWeb API Rules](https://apis.io/rules/openweb/openweb-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Openweb Authentication](https://apis.io/security/openweb/openweb-authentication/)
+- [Openweb Domain Security](https://apis.io/security/openweb/openweb-domain-security/)
+- [Openweb Trust Center](https://apis.io/security/openweb/openweb-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.openweb.com/)
+- [Documentation](https://developers.openweb.com/docs/getting-started)
+- [Getting started](https://developers.openweb.com/docs/getting-started)
+- [API reference](https://developers.openweb.com/reference/post_v1-publisher-auth)
+- [Changelog](https://updates.openweb.com)
+- [Blog](https://www.openweb.com/blog)
+- [Compliance](https://trust.openweb.com)
+- [Trust centre](https://trust.openweb.com)
+- [Terms of service](https://www.openweb.com/terms-of-service)
+- [Privacy policy](https://www.openweb.com/de/privacy/)
+- [GitHub](https://github.com/spotim)
+- [Status](https://status.openweb.com)
+
+## API Evangelist rating
+
+**Kin Score 44.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 55.0 |
+| Contract governance | 35.6 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 21.1 |
+
+**Agent readiness 24.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/openweb/](https://apis.io/providers/openweb/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for OpenWeb: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/openweb/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
